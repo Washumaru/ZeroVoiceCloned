@@ -5,14 +5,9 @@ Para comprobar que el archivo que descargaste es exactamente el que se publico a
 nadie lo ha tocado por el camino. En Windows, abre PowerShell en la carpeta de la
 descarga y escribe:
 
-    Get-FileHash ZeroVoiceCloned-1.0.0-completa.zip -Algorithm SHA256
-
 El valor que salga tiene que coincidir, letra por letra, con el de abajo. Si no coincide,
 no lo abras: descargalo otra vez desde la pagina oficial.
 
-ZeroVoiceCloned-1.0.0-completa.zip
-  tamano : 1,700,614,233 bytes (1621.8 MB)
-  sha256 : b8d70d123037d3ff0efaf7e9fd671dcfde888673ec062f0e9b6f754048c8097d
 
 ZeroVoiceCloned-1.0.0-prueba.zip
   tamano : 1,388,515,012 bytes (1324.2 MB)
