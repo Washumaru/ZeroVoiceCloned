@@ -67,6 +67,26 @@ incluidas.
 > el límite de 30 segundos por canción. Pruébala y decide sin prisa — cuando abra la
 > venta, este enlace aparecerá aquí.
 
+### Verás errores en rojo en la consola, y son normales
+
+La versión de prueba **no incluye** las partes del programa que se encargan del vídeo y
+del doblaje. No están capadas: no viajan dentro del archivo, y por eso ocupa menos.
+
+Como consecuencia, al procesar una canción la ventana negra puede escupir varias líneas
+rojas —`ModuleNotFoundError`, `500 Internal Server Error`— cuando la pantalla consulta por
+esas funciones. **No afectan al resultado.** Fíjate en que justo debajo aparece
+`Separación completada con éxito`: el trabajo termina igual.
+
+Preferiría que en lugar de ese error dijera «esto está en la versión completa», y lo dirá.
+Mientras tanto, la regla para saber si algo va mal de verdad es simple:
+
+- **Rojo y el proceso termina** → es esto, ignóralo.
+- **Rojo y el proceso se detiene** → eso sí es un fallo.
+  [Cuéntamelo](https://github.com/Washumaru/ZeroVoiceCloned/issues) con lo que hacías, la
+  duración y el formato de la canción, y las últimas líneas de la ventana.
+
+En la versión completa no aparecen: esas partes sí están dentro.
+
 ---
 
 ## Antes de comprar, lee esto
