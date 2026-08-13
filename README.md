@@ -44,6 +44,10 @@ usa, incluidos los modelos de separación.
 
 Todo local. Sin cuenta, sin suscripción, sin conexión obligatoria y sin límite mensual.
 
+**[→ La lista larga: qué hace por dentro y por qué](CARACTERISTICAS.md)** — el injerto de
+banda alta, la separación de coros, los duetos dentro del mismo verso, la reconstrucción
+del índice perdido y el resto de sistemas, con las mediciones que los motivaron.
+
 ---
 
 ## La versión de prueba
