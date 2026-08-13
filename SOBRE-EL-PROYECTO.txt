@@ -1,0 +1,176 @@
+SOBRE ESTE PROYECTO
+===================
+Lee esto antes de juzgar el programa. Es el contexto que no cabe en una pagina de
+producto y que prefiero que sepas desde el principio.
+
+
+QUIEN HAY DETRAS
+  Una sola persona. No hay estudio, no hay equipo, no hay empresa detras.
+
+  Este programa lleva mas de un año en marcha - un año y varios meses, para ser exacto.
+  No un año a jornada completa: un año de ratos. Trabajo y estudio, asi que lo que le he
+  podido dedicar son noches sueltas y fines de semana libres, y hubo tramos enteros en
+  los que no lo toque en absoluto.
+
+  Ese tiempo se fue en leer como funcionan de verdad la separacion de fuentes y la
+  conversion de voz, probar lo que ya existe, medir por que algo suena mal y volver a
+  intentarlo. La mayor parte no se ve en la pantalla: se fue en descartar caminos que no
+  funcionaban, que es la parte lenta y la que no luce.
+
+  Lo digo tal cual y sin adornarlo porque explica bastante de lo que vas a encontrarte:
+  ni el acabado de un equipo con dedicacion completa, ni un fin de semana de prisas.
+
+
+QUE ESPERAR, Y QUE NO
+  No esperes el acabado de un programa hecho por una empresa con veinte personas y
+  presupuesto. No lo es y no pretende serlo.
+
+  Va a tener errores. Va a haber detalles sin pulir. Habra funciones que se comporten
+  distinto a como las imaginabas, y alguna que este a medio camino - cuando sea el caso,
+  lo dice en pantalla en lugar de disimularlo.
+
+  Lo que si puedes esperar: que lo que se afirma se pueda comprobar, que los cambios se
+  midan antes de darlos por buenos, y que cuando algo no funcione se diga claro.
+
+
+COMO SE TRABAJA EN EL
+  Cada cambio en la cadena de audio se mide contra la version anterior antes de
+  aceptarlo. Hay una bateria de pruebas automaticas que se ejecuta cuando se toca algo,
+  y la cobertura es mas alta justamente en las partes que mas veces se rompieron. Nada
+  se cambia "a oido y listo": si una mejora no se puede medir, no entra.
+
+  Para investigar me apoyo en lo que tengo a mano: articulos y trabajos publicados,
+  proyectos de codigo abierto, foros donde se discuten estos problemas, herramientas de
+  medicion de audio y tambien asistentes de inteligencia artificial, del mismo modo que
+  cualquier desarrollador usa documentacion, un depurador o un analizador de espectro.
+
+  Conviene ser exacto en esto, porque se malinterpreta con facilidad: son herramientas
+  de consulta y de apoyo, no el autor del programa. Ninguna decide que entra y que no.
+  Lo que se publica pasa antes por la misma criba de siempre - se prueba, se mide, se
+  escucha, y si no mejora se descarta, venga la idea de donde venga. La responsabilidad
+  de cada linea publicada es mia.
+
+
+EN QUE EQUIPO ESTA PROBADO ESTO
+  Conviene que lo sepas para saber que estas comprando.
+
+  El programa se ha desarrollado y probado en UNA sola computadora: Windows, con tarjeta
+  grafica AMD. No hay un equipo de prueba, no hay probadores, y no he podido ejecutarlo
+  en un abanico de maquinas distintas. Todo lo que se afirma esta comprobado ahi.
+
+  Que significa eso en la practica:
+
+    - La aceleracion por tarjeta grafica usa DirectML, que funciona con cualquier tarjeta
+      compatible con DirectX 12: AMD, Intel y tambien NVIDIA. Esa es la via probada,
+      porque es la de mi equipo.
+
+    - La via propia de NVIDIA, CUDA, NO viaja dentro del programa. Si tienes una NVIDIA,
+      funcionara igual por DirectML - no se queda sin aceleracion - pero no alcanzara la
+      velocidad que daria CUDA. No la incluyo porque no tengo forma de probarla, y
+      prefiero no meter algo que no he visto funcionar a decir que lo soporto.
+
+    - Puede haber fallos que solo aparezcan con una combinacion de hardware o de Windows
+      que yo no tengo delante. Si te pasa, cuentalo: es informacion que no puedo conseguir
+      de otra manera.
+
+  Por eso insisto tanto con la version de prueba: es la unica forma de saber si funciona
+  en TU maquina antes de pagar. Pruebala ahi primero.
+
+
+POR QUE LAS ACTUALIZACIONES PODRIAN TARDAR MAS DE LO QUE ESPERAS
+  Conviene que lo sepas antes y no despues: trabajo y estudio.
+
+  El tiempo que le puedo dedicar al programa es el que queda despues de cumplir con las
+  dos cosas, y habra semanas en las que no quede casi nada. Eso significa que entre una
+  version y la siguiente puede pasar mas tiempo del que te parezca razonable, y que una
+  correccion que en un proyecto con equipo detras saldria en dias, aqui puede tardar.
+
+  No voy a prometer fechas. Prefiero no dar ninguna antes que dar una y fallarla.
+
+  Lo que si me comprometo a sostener:
+
+    - Los fallos que rompen el uso normal tienen prioridad sobre las funciones nuevas.
+    - Lo que se corrige se publica, aunque sea una correccion pequeña y sola.
+    - Los reportes se leen todos, uno por uno.
+
+  Si compras, compra por lo que el programa hace HOY - eso lo puedes comprobar gratis y
+  sin limite de tiempo con la version de prueba, que tiene la misma calidad de audio y
+  solo esta limitada en duracion. No compres por lo que pueda llegar mas adelante: llegara
+  cuando llegue, y prefiero decirtelo antes de que pagues.
+
+
+SOBRE QUE TRABAJO AJENO ESTA CONSTRUIDO
+  Este programa no reinventa la separacion de audio ni la conversion de voz: las usa. Se
+  apoya en proyectos de codigo abierto y en modelos que sus autores publicaron libremente,
+  todos bajo licencias que permiten este uso, incluido venderlo.
+
+  Prefiero decirlo yo y en la primera pagina que no decirlo. Los nombres, los enlaces y los
+  textos de licencia de TODO lo que viaja dentro estan en CREDITOS-Y-LICENCIAS.txt, aqui
+  mismo, en esta carpeta.
+
+  Lo que si es trabajo mio: la cadena de tratamiento de la voz, el reparto por interprete,
+  el injerto de banda alta, la correccion de diccion, la interfaz, el sistema de licencias,
+  y que todo eso funcione junto en una computadora normal sin que haya que configurar nada.
+  Sobre esa base hay mucha gente que no ha construido nada parecido; la base no es el
+  merito, pero tampoco es mia, y las dos cosas son ciertas a la vez.
+
+
+POR QUE LO VENDO SI NO ESTOY SEGURO DE QUE FUNCIONE AL 100%
+  Es una pregunta justa y merece una respuesta directa, no un rodeo.
+
+  Porque esa seguridad no va a llegar nunca. No existe el dia en que pueda decir "ya esta,
+  ahora si funciona en todas las maquinas del mundo": para afirmarlo tendria que haberlo
+  ejecutado en todas ellas. Lo que si puedo hacer es que no dependas de mi palabra.
+
+  Por eso la version de prueba es gratis, no caduca, y no esta capada en calidad. No es un
+  adelanto ni una demostracion recortada: es el mismo motor, el mismo resultado, con la
+  unica limitacion de que procesa los primeros 30 segundos de cada cancion. Se instala en
+  TU computadora, con TU tarjeta, TU version de Windows y TU musica. Si algo no funciona en
+  tu equipo, lo descubres ahi - gratis y antes de pagar, que es exactamente donde tiene que
+  descubrirse.
+
+  Dicho de otro modo: no te pido que confies en que funciona. Te pido que lo compruebes.
+
+
+POR QUE CREO QUE VALE LO QUE CUESTA
+  No voy a decirte que es barato "comparado con". No me parece bien hablar del trabajo de
+  otros para vender el mio, asi que te digo solo lo que hay aqui y tu decides.
+
+  Lo que estas pagando:
+
+    - Un programa que hace el trabajo completo de principio a fin: separa la cancion,
+      reconoce quien canta en cada tramo, sustituye las voces por los modelos que tu
+      elijas, y te lo devuelve mezclado y exportado. Sin saltar entre herramientas.
+
+    - Que funcione entero en tu computadora. Ni una muestra de tu audio sale de tu disco.
+      Sin cuenta, sin suscripcion, sin conexion obligatoria, sin pagar por cancion y sin
+      un limite mensual que se acabe a mitad de un proyecto.
+
+    - Un pago unico, sin renovaciones. La clave sirve para tres computadoras y las
+      actualizaciones van incluidas mientras el proyecto siga en pie.
+
+    - Mas de un año de trabajo de una sola persona, en el tiempo que dejan un empleo y
+      unos estudios: leer, probar, medir, descartar y volver a empezar hasta que lo que
+      sale por el altavoz aguanta una escucha con atencion.
+
+  Y lo que NO estas pagando, porque prefiero decirlo yo antes de que lo descubras tu: no
+  estas pagando un programa terminado, ni soporte inmediato, ni una empresa detras que
+  responda un martes a las nueve de la manana.
+
+  Si despues de probarlo te parece que no vale ese dinero, no lo pagues. Lo digo en serio y
+  sin resentimiento: prefiero un comprador menos que alguien que pago esperando otra cosa.
+  Un programa que se vende a base de convencer a quien dudaba no dura, y yo quiero
+  dedicarme a esto mucho tiempo.
+
+
+ESTE PROGRAMA NO ESTA TERMINADO, Y NO VA A ESTARLO
+  La separacion de audio y la clonacion de voz cambian cada pocos meses. Un programa de
+  este tipo que se declarara acabado estaria, en realidad, empezando a quedarse atras.
+
+  Es una herramienta viva, en investigacion continua. Con lo que eso tiene de bueno -
+  mejora- y con lo que tiene de incomodo: cambia, se rompe, y a veces algo se rehace desde
+  cero porque medido de cerca era peor de lo que parecia.
+
+  Gracias por leer hasta aqui, y por apoyar un proyecto hecho asi.
+
+                                                             Washumaru

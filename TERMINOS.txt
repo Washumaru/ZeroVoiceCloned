@@ -1,0 +1,159 @@
+Términos y condiciones de uso
+=============================
+
+ZeroVoiceCloned es una herramienta de procesamiento de audio que funciona íntegramente en
+tu computadora. Antes de usarla, lee esto.
+
+1. QUÉ ES ESTE PROGRAMA
+
+Es una herramienta de propósito general para separar, transformar y mezclar audio.
+Convierte una voz en otra a partir de un modelo que tú eliges y que tú aportas. El
+programa NO incluye, NO distribuye y NO ofrece modelos de voz de personas reales.
+
+2. TU RESPONSABILIDAD SOBRE LO QUE PROCESAS
+
+Eres la única persona responsable del audio que proceses y del resultado que generes,
+publiques o distribuyas.
+
+Antes de usar una grabación o un modelo de voz debes contar con los permisos necesarios.
+La voz de una persona está protegida en muchos países, igual que las grabaciones y las
+composiciones musicales. Que este programa te permita hacer algo técnicamente no
+significa que tengas derecho a hacerlo.
+
+3. USOS PARA LOS QUE ESTÁ PENSADO
+
+Tu propia voz. Voces de personas que te dieron permiso. Doblaje y locución de material
+propio. Restauración de grabaciones. Estudio y experimentación. Producción musical con
+voces propias o con licencia.
+
+4. USOS PROHIBIDOS
+
+No está permitido usar este programa para:
+
+  · hacerse pasar por otra persona;
+  · cometer fraude, estafa o suplantación de identidad;
+  · difamar, acosar o crear contenido sexual no consentido;
+  · publicar o vender obras con la voz de alguien sin su permiso;
+  · vulnerar los derechos de una grabación o composición ajena;
+  · cualquier fin prohibido por la ley de tu país.
+
+Si usas el programa para algo de esta lista, la responsabilidad es tuya y solo tuya.
+
+5. LICENCIA DE USO
+
+Al comprar recibes una licencia personal e intransferible para usar el programa. La
+clave se activa en tu equipo y admite un número limitado de computadoras. No está
+permitido revender, compartir, publicar ni ceder tu clave. Una clave que aparezca
+circulando públicamente puede ser anulada.
+
+El programa se sigue vendiendo, actualizando y modificando: las funciones pueden cambiar
+entre versiones.
+
+6. SIN GARANTÍAS
+
+El programa se entrega TAL CUAL, sin garantía de ningún tipo, expresa ni implícita. No se
+garantiza que funcione sin errores, que sea apto para un fin concreto ni que el resultado
+tenga una calidad determinada. La calidad depende en gran medida de los modelos y del
+material que tú aportes.
+
+7. LÍMITE DE RESPONSABILIDAD
+
+En la máxima medida que permita la ley, el autor no responde por daños directos,
+indirectos, incidentales o derivados del uso o de la imposibilidad de uso del programa,
+incluyendo pérdida de datos, de archivos de audio, de tiempo o de ingresos. Tampoco
+responde por el contenido que los usuarios generen.
+
+8. COMPONENTES DE TERCEROS
+
+El programa se apoya en componentes de código abierto, cada uno con su propia licencia y
+sus propios autores. Los nombres de tecnologías y marcas mencionados pertenecen a sus
+respectivos dueños.
+
+9. PRIVACIDAD
+
+El procesamiento de audio ocurre íntegramente en tu computadora. Ni el audio, ni tus
+modelos, ni los resultados se envían a ningún servidor.
+
+El programa solo abre una conexión en dos casos, ambos a petición tuya: al canjear tu
+clave por primera vez, y si pegas un enlace para descargar audio. También puede consultar
+una lista pública de claves anuladas, que se desactiva desde Ajustes.
+
+10. POLÍTICA DE REEMBOLSOS
+
+No se realizan reembolsos una vez entregada la clave de licencia.
+
+Esto no es una cláusula arbitraria; responde a la naturaleza del producto:
+
+  a) PUEDES PROBARLO ANTES DE PAGAR, GRATIS Y SIN LÍMITE DE TIEMPO. La versión de prueba
+     procesa los primeros 30 segundos de cada canción con exactamente la misma calidad
+     que la versión completa: sin ruido añadido, sin marcas de agua y sin reducción de
+     volumen. Puedes usar tus propios modelos y tus propias canciones. Es decir: puedes
+     escuchar el resultado real que vas a obtener antes de gastar un solo peso. Nadie
+     compra a ciegas.
+
+  b) LA ENTREGA ES INMEDIATA E IRREVERSIBLE. Al completarse la compra recibes la clave
+     al instante. Un archivo digital no se puede "devolver": una vez entregado, sigue en
+     poder de quien lo recibió aunque se reintegre el dinero.
+
+  c) LA ACTIVACIÓN CONSUME UN CUPO. Cada clave admite un número limitado de equipos, y
+     ese consumo queda registrado en el momento de activar.
+
+  d) EL RESULTADO DEPENDE DE MATERIAL QUE APORTAS TÚ. La calidad de una voz clonada
+     depende sobre todo del modelo y de la grabación que uses, que no están bajo nuestro
+     control. Por eso existe la versión de prueba: para que compruebes ese resultado con
+     tu propio material antes de comprar.
+
+SÍ se atiende reembolso en estos casos:
+
+  · cobro duplicado o cobro por error;
+  · la clave no funciona por un fallo atribuible al programa y no logramos resolverlo;
+  · cuando la ley aplicable en tu país te reconozca ese derecho de forma irrenunciable.
+
+Nada de lo anterior limita los derechos que la legislación de tu país te reconozca como
+consumidor. Si tienes un problema, escríbenos antes de abrir una disputa: casi todo se
+resuelve emitiendo una clave nueva.
+
+11. ESTADO DEL PROGRAMA: EN DESARROLLO PERMANENTE
+
+Esto no es una advertencia escondida en la letra pequeña; es la parte más importante de
+este documento y conviene leerla despacio.
+
+ZeroVoiceCloned NO es un producto terminado, y no va a serlo. No porque esté abandonado,
+sino por lo contrario: es una herramienta viva, en desarrollo continuo, sobre un terreno
+—la separación de audio y la clonación de voz— que cambia cada pocos meses. Un programa
+de este tipo que se declarara «terminado» estaría, en realidad, empezando a quedarse
+atrás.
+
+Qué significa eso en la práctica, dicho sin adornos:
+
+  · Puede tener errores. Algunos ya conocidos, otros que aparecerán con canciones,
+    modelos o equipos que nunca se han probado.
+  · Puede faltar alguna función que esperabas encontrar, o alguna puede funcionar de
+    forma distinta a como la imaginabas.
+  · Algunas cosas cambiarán entre versiones: mejoras, ajustes de comportamiento y, en
+    ocasiones, funciones que se rehacen desde cero porque medían peor de lo que parecía.
+  · El resultado depende mucho del material que aportes. Un modelo pobre da un resultado
+    pobre por bueno que sea el programa.
+
+Y qué se compromete a cambio quien lo hace:
+
+  · Corregir lo que se rompa y publicar las correcciones.
+  · Medir cada cambio antes de darlo por bueno, en lugar de aceptarlo «a oído».
+  · Escuchar los reportes: casi todas las mejoras del programa han salido de alguien
+    diciendo «esto suena raro».
+  · Decir en pantalla cuándo el límite lo pone el modelo y no el programa, en lugar de
+    esconderlo detrás de un control que no puede arreglarlo.
+
+POR ESO EXISTE LA VERSIÓN DE PRUEBA. No compras una promesa: compras lo que el programa
+hace HOY, y puedes comprobarlo antes con tus propias canciones y tus propios modelos, con
+la misma calidad que la versión completa. Si lo que escuchas en la prueba te sirve, la
+versión completa hace exactamente eso mismo sin límite. Si no te sirve, no compres.
+
+Al aceptar estos términos reconoces que compras el programa en su estado actual, con sus
+errores y sus carencias, y no en función de mejoras futuras. Las mejoras llegarán —han
+llegado hasta ahora— pero no son parte del trato: lo que compras es lo que ya funciona.
+
+12. ACEPTACIÓN
+
+Al aceptar estos términos declaras que los leíste, que los entiendes y que asumes la
+responsabilidad sobre el uso que le des al programa. Si no estás de acuerdo, no lo uses.
