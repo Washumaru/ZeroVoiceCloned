@@ -48,9 +48,10 @@ Todo local. Sin cuenta, sin suscripción, sin conexión obligatoria y sin límit
 
 ## La versión de prueba
 
-Procesa **los primeros 30 segundos** de cada canción, con la **misma calidad** que la
-versión completa: sin ruido añadido, sin marcas de agua y sin bajar el volumen. Escuchas
-exactamente lo que obtendrías al comprar.
+**Es el programa entero**, no una demostración recortada. Procesa **los primeros 30
+segundos** de cada canción con la **misma calidad** que la versión completa: sin ruido
+añadido, sin marcas de agua y sin bajar el volumen. Escuchas exactamente lo que obtendrías
+al comprar.
 
 Esos 30 segundos no son un recorte del resultado: la canción se corta **antes** de
 procesarla, así que el resto del tema no se separa ni se guarda en ningún momento.
@@ -58,8 +59,13 @@ procesarla, así que el resto del tema no se separa ni se guarda en ningún mome
 No incluye: exportar la canción completa, exportar el vídeo, repartir varias voces en un
 mismo tema ni montar doblajes.
 
-**[Versión completa — 25 USD, pago único](https://washumaru.gumroad.com/l/ZeroVoiceCloned)**
-· una clave, tres computadoras, actualizaciones incluidas.
+**Versión completa — 25 USD, pago único.** Una clave, tres computadoras, actualizaciones
+incluidas.
+
+> 🕓 **Todavía no está a la venta.** La tienda estará lista en unos días. Mientras tanto,
+> la versión de prueba de arriba es el programa entero: mismo motor y misma calidad, con
+> el límite de 30 segundos por canción. Pruébala y decide sin prisa — cuando abra la
+> venta, este enlace aparecerá aquí.
 
 ---
 
