@@ -1,0 +1,171 @@
+# Cómo se trabaja en esto
+
+Y la pregunta incómoda del final: por qué se publica con el doblaje sin terminar.
+
+---
+
+## Nada entra «a oído»
+
+La regla es una y no tiene excepciones: **si una mejora no se puede medir, no entra.**
+
+Suena severo para un proyecto de una persona, pero es justo al revés — es lo único que
+permite trabajar solo. Sin nadie que revise, el oído se acostumbra a lo que uno mismo acaba
+de hacer: a los veinte minutos de tocar un parámetro, la versión nueva siempre suena mejor.
+Los números no se acostumbran.
+
+Cuando toco algo de la cadena de audio:
+
+1. **Se mide antes.** El estado actual, con cifras concretas: nivel por bandas, techo de
+   frecuencia, desviación de tono, lo que aplique al caso.
+2. **Se hace el cambio.**
+3. **Se mide después, sobre el mismo material.**
+4. **Si no mejora, se descarta** — aunque me guste cómo suena, aunque haya costado toda una
+   tarde.
+
+Por eso en la [lista de características](CARACTERISTICAS.md) hay tablas con decimales en
+vez de adjetivos. Esos números son el motivo por el que cada cosa está ahí.
+
+El ejemplo que mejor lo explica: durante semanas la voz clonada sonaba apagada y ningún
+ajuste lo arreglaba. Medido, el volumen estaba **+0,2 dB** respecto al original — o sea,
+correcto. El problema estaba en la banda de 8–12 kHz, hasta **−69,1 dB** en el peor modelo.
+A oído era «suena mal»; medido era un problema concreto con una solución concreta. Sin
+medir, habría seguido moviendo faders para siempre.
+
+---
+
+## Con qué modelos se prueba, y por qué son malos a propósito
+
+Los modelos de voz con los que desarrollo **no son buenos**. Están entrenados con poco
+tiempo y con material mediocre: notas de voz, llamadas, grabaciones a 16 kHz, audio de
+Discord. Y es deliberado.
+
+La razón es sencilla: **eso es lo que va a tener la mayoría.** Entrenar un modelo decente
+lleva horas de audio limpio y horas de máquina, y la gente que descarga un estudio de
+clonación de voz normalmente llega con lo que pudo entrenar en una tarde, o con un modelo
+que se bajó de algún sitio.
+
+Si el programa solo suena bien con modelos excelentes, no sirve para casi nadie.
+
+Así que el criterio al ajustar cualquier cosa es: **que un modelo mal entrenado suene lo
+mejor posible.** Con uno bueno, todo lo que se hace por el malo suma igual — al revés no
+funciona. Un programa afinado contra material perfecto se derrumba en cuanto le das
+material real.
+
+De ahí sale, literalmente, la función de la que más orgulloso estoy. El injerto de banda
+alta nació midiendo cuatro modelos y encontrando que dos de ellos tenían el techo de
+frecuencia en 9 000 y 7 274 Hz — sordos de fábrica, incapaces de producir el aire de una
+voz por mucho que se les pida. En vez de descartar esos modelos por malos, el programa les
+presta esa banda del vocal original de la canción. **Recupera hasta +43 dB en un modelo que
+no debería poder sonar bien.**
+
+Esa función no habría existido nunca desarrollando con modelos buenos. Ni se habría notado
+el problema.
+
+---
+
+## Las pruebas automáticas
+
+**376 comprobaciones** que se ejecutan antes de dar por bueno un cambio: 300 sobre el motor
+de audio y 76 sobre la interfaz.
+
+No están repartidas por igual. **La cobertura sigue a las cicatrices**: las zonas con más
+pruebas son las que más veces se rompieron, no las más grandes. El espacio y la
+reverberación tienen 37 comprobaciones porque se rompieron 37 veces de formas distintas.
+
+Cuando una prueba falla, **el cambio no se publica**. No hay «lo dejo así de momento» ni
+«ya lo miro luego»: o pasa, o no sale de aquí.
+
+Y cada vez que aparece un fallo que las pruebas no vieron venir, lo primero es **escribir la
+prueba que lo habría cazado**, antes de arreglarlo. Así el mismo fallo no puede volver dos
+veces. Buena parte de esas 376 nacieron exactamente así.
+
+---
+
+## Por qué esto hace que todo tarde tanto
+
+Conviene decirlo entero, porque es la consecuencia directa de lo de arriba: **lo mismo que
+hace fiable al programa es lo que lo hace lento.**
+
+Una función no es «escribirla». Es escribirla, medirla contra lo anterior, cubrirla con
+pruebas, encontrar los casos donde falla, arreglarlos, y volver a medir. La parte de
+escribir suele ser la más corta. Y todo eso sale del rato que queda después del trabajo y
+de los estudios: noches sueltas y fines de semana, con semanas enteras en las que no toco
+nada.
+
+Súmale con qué cuento:
+
+- **No hay equipo.** Nadie con quien repartir el trabajo, nadie a quien preguntarle por qué
+  algo suena raro, nadie que revise lo que hice.
+- **No hay probadores.** Ni un grupo cerrado, ni versiones previas repartidas. El único que
+  prueba soy yo.
+- **Hay una computadora. La mía.** Un solo Windows, una sola tarjeta, una sola combinación
+  de todo. Cuando digo que algo está probado, está probado **ahí**.
+
+Ese último punto es el más limitante y el más incómodo de reconocer. Un fallo que solo
+aparece con otra tarjeta gráfica, otra versión de Windows o un audio con una peculiaridad
+que yo no tengo a mano, **no lo puedo encontrar por mucho tiempo que le dedique**. No es
+falta de ganas: es información a la que no tengo acceso.
+
+Por eso los reportes valen tanto aquí. No son una queja: son literalmente la única forma de
+ver lo que mi equipo no puede enseñarme.
+
+**Y por eso entre una versión y la siguiente puede pasar mucho más tiempo del que parezca
+razonable.** Podría publicar el triple de rápido saltándome las mediciones y las pruebas —
+y publicaría el triple de cosas rotas. Prefiero tardar.
+
+---
+
+## La pregunta del millón: ¿por qué publicar con el doblaje sin terminar?
+
+Es lo primero que me preguntaría yo, así que va con respuesta directa.
+
+**Qué pasó.** Trabajando en el modo de doblaje, algo se rompió de forma inesperada: parte
+del trabajo se dañó y no hubo manera de recuperarlo. Me tocó volver atrás, a un punto
+anterior, y rehacer camino ya recorrido. Es de las cosas que en un equipo se resuelven en
+una tarde entre varios, y que solo, con las horas que dejan un empleo y unos estudios, se
+convierte en semanas.
+
+**Qué opciones había**, y ninguna era buena:
+
+1. **Retrasar todo el programa** hasta terminar el doblaje. Habría dejado parado durante
+   meses lo que ya funciona y está medido: la separación, la clonación, el reparto de voces,
+   toda la cadena de tratamiento.
+2. **Quitar el doblaje** y no mencionarlo. La función existe, se puede usar y a mucha gente
+   le sirve tal como está. Esconderla habría sido tirar trabajo que funciona.
+3. **Publicarla diciendo exactamente en qué punto está.**
+
+Elegí la tercera.
+
+**Y por eso está marcada en todas partes**: dentro del programa, con una etiqueta *EN
+PRUEBAS* junto al título y un aviso permanente en su pantalla; en el LÉEME; en la página de
+inicio; en la descripción de la tienda; y en la hoja de ruta, donde el doblaje aparece en
+«en medición» y no en «ya está». Es la única función del programa con esa marca, y no está
+puesta por prudencia genérica: está puesta porque es verdad.
+
+**Lo que no voy a hacer** es cobrarla como si estuviera terminada y esperar a que se note.
+Si estás comprando principalmente por el doblaje, quiero que lo sepas antes de pagar,
+aunque eso me cueste la venta. Prefiero un comprador menos que uno que pagó esperando otra
+cosa.
+
+### Qué falta para quitarle esa etiqueta
+
+Para poder decir que está terminado, no basta con que funcione en mi equipo con mis vídeos.
+Hace falta:
+
+- Que la sincronía aguante en material variado: vídeos largos, con cambios de ritmo, con
+  varias personas hablando encima.
+- Cubrirlo con pruebas automáticas al nivel del resto de la cadena.
+- Uso real de gente que no sea yo, que es justo lo que ahora mismo no tengo.
+
+Cuando eso esté, la etiqueta desaparece y se dirá en el registro de cambios. Sin fecha:
+prefiero no dar ninguna antes que dar una y fallarla.
+
+---
+
+## Lo que esto significa para ti
+
+Que cuando el programa dice que algo funciona, hay una medición detrás. Y que cuando algo no
+está terminado, **lo dice él mismo antes de que lo descubras tú**.
+
+Es la única forma de vender un programa hecho por una persona sola sin pedirle a nadie un
+acto de fe.

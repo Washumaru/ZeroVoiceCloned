@@ -179,6 +179,7 @@ dentro del programa. Puedes revisarlos sin descargar nada.
 | | |
 |---|---|
 | [Qué hace por dentro](CARACTERISTICAS.md) | La lista larga de sistemas y por qué existe cada uno |
+| [Cómo se trabaja en esto](COMO-TRABAJO.md) | Cómo se mide cada cambio, y por qué se publica con el doblaje sin terminar |
 | [Ayuda y problemas frecuentes](AYUDA.md) | De dónde salen los modelos de voz, el aviso de Windows, por qué suena apagado, qué hacer si algo falla |
 | [La clave: cómo funciona](LICENCIA-Y-ACTIVACION.md) | Qué gasta cupo y qué no, cambiar de computadora, formatear |
 | [Sobre el proyecto](SOBRE-EL-PROYECTO.txt) | Quién hay detrás, cómo se trabaja, por qué se vende |

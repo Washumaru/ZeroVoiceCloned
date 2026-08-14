@@ -198,6 +198,11 @@ La causa: dos de esos modelos se entrenaron con audio de banda limitada —graba
 16 kHz, notas de voz, llamadas, capturas de Discord— y su decodificador **nunca aprendió a
 producir esas frecuencias**. Ningún parámetro de inferencia las puede recuperar.
 
+Y que los modelos de prueba sean así es **a propósito**: el programa se afina contra
+modelos entrenados con poco tiempo y material mediocre, que es lo que va a tener la mayoría
+de la gente. Con un modelo bueno, todo lo que se hace por el malo suma igual; al revés no
+funciona. Está explicado en [Cómo se trabaja en esto](COMO-TRABAJO.md).
+
 Lo que sí se puede hacer es **tomarlas prestadas del vocal original de la canción**, que sí
 las tiene. Eso es el injerto: se cruza por encima de los ~7 kHz y se pega el aire del
 original sobre el clon. Recupera hasta **+43 dB** en esa banda sin traer nada de la
