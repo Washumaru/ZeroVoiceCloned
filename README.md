@@ -35,6 +35,36 @@ usa, incluidos los modelos de separación.
 
 ---
 
+## Míralo funcionando
+
+**[▶ Ver la demostración del sistema multi-voz](capturas/multivoz-demo.mp4)** — una canción
+con dos cantantes, cada uno sustituido por un modelo distinto.
+
+Conviene saber con qué está hecha, porque es lo que hace la prueba interesante:
+
+**La voz clonada es un modelo mal entrenado.** No es una demostración con material de
+laboratorio: es uno de los modelos que recuperé, entrenado con poco tiempo y con audio
+mediocre — de los que suenan apagados y deshilachados en cuanto suben. Suena bien **por lo
+que el programa hace con él**, no porque el modelo sea bueno.
+
+De eso se encarga **Vocal Enhance**: le presta la banda alta que el modelo no sabe
+producir, le copia la sala y el color de la canción, le devuelve el ataque de las frases,
+le quita el ruido que mete en las notas altas y le tapa los huecos donde se queda mudo.
+Todo eso es un interruptor: no hay que entender nada de lo anterior para usarlo.
+
+Y ese es el objetivo al que sigo apuntando — **que alguien sin ni idea de edición musical
+pueda hacer su música**. Cada mejora se mide contra ese listón, no contra lo que suena bien
+en manos de quien ya sabe mezclar.
+
+> **Sobre la canción de la demostración.** Es un tema conocido y con derechos de autor, y
+> se usa aquí **como prueba real**, no como producto: una canción comercial de verdad, con
+> su mezcla, sus coros y sus dos voces, que es lo único que demuestra que esto funciona
+> fuera de un caso preparado. No se distribuye la canción ni se reclama ningún derecho
+> sobre ella, y todos los derechos son de sus autores. Las voces que se ponen encima son
+> mías.
+
+---
+
 ## Qué hace
 
 | | |

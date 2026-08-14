@@ -13,11 +13,33 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
 
 ### Nuevo
 
+- **Escuchar la comparación con el instrumental.** Un interruptor en el comparador añade
+  la pista de fondo, para oír cómo queda la voz dentro de la canción en vez de aislada.
+  Entra y sale sin parar lo que está sonando. Viene apagado: con la música encima cuesta
+  más notar las diferencias de timbre, que es para lo que sirve comparar.
+
+- **Los enlaces del proyecto, dentro del programa.** En Ajustes aparecen la documentación,
+  la página de compra y la biblioteca de descargas de quien ya compró. Antes había que
+  acordarse de una dirección web.
+
 - **Escuchar el original y el clon a la vez.** En el comparador hay un tercer botón,
   «Las dos», que suena las dos pistas en el mismo segundo en lugar de alternar entre
   ellas. Alternando se juzga el timbre; sonando juntas salta al instante lo que el oído no
   recuerda: si el clon entra tarde, si se queda corto en una frase o si se apaga en una
   nota alta. El clon suena tal cual quedó, con la configuración con la que se clonó.
+
+### Cambiado
+
+- **El menú ya no lleva a la portada, y hay un botón de inicio aparte.** Estaba como una
+  pestaña más entre las secciones del programa, así que pulsarla por costumbre te sacaba
+  de la aplicación a mitad de una sesión. Ahora es un botón con su propio icono en el
+  extremo izquierdo, separado de las pestañas: se lee como una salida y no como un
+  destino más.
+
+- **Fuera el atajo de descarga en WAV y el importador de canciones.** La exportación de
+  arriba ya ofrece todos los formatos con etiquetas y carátula, así que el atajo repetía
+  —peor— algo que ya existía, y dos botones que hacen lo mismo obligan a pararse a decidir
+  cuál es cuál.
 
 ### Corregido
 

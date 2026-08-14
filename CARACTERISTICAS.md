@@ -111,8 +111,6 @@ Tres controles que existen porque cortar y pegar voces deja marcas audibles:
 
 ---
 
----
-
 ## Clonación
 
 ![El motor de clonación](capturas/motor-clonacion.png)
@@ -293,7 +291,7 @@ intérpretes, uno puede quedar tapado si se aplica una sola ganancia a todo.
 
 ## Cómo se comprueba todo esto
 
-**376 comprobaciones automáticas** —300 sobre el motor de audio y 76 sobre la interfaz— que
+**385 comprobaciones automáticas** —309 sobre el motor de audio y 76 sobre la interfaz— que
 se ejecutan antes de dar por bueno un cambio. La cobertura es más alta justo en las partes
 que más veces se rompieron: la cobertura sigue a las cicatrices, no al tamaño del código.
 
