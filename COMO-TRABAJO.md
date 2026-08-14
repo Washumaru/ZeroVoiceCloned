@@ -70,10 +70,75 @@ de audio y 76 sobre la interfaz.
 
 No están repartidas por igual. **La cobertura sigue a las cicatrices**: las zonas con más
 pruebas son las que más veces se rompieron, no las más grandes. El espacio y la
-reverberación tienen 37 comprobaciones porque se rompieron 37 veces de formas distintas.
+reverberación encabezan la lista porque se rompieron de más formas distintas que ninguna
+otra parte.
 
-Cuando una prueba falla, **el cambio no se publica**. No hay «lo dejo así de momento» ni
-«ya lo miro luego»: o pasa, o no sale de aquí.
+<!-- CUENTA-PRUEBAS:INICIO (lo escribe tools/contar_pruebas.py) -->
+
+| Área | Comprobaciones |
+|---|---:|
+| Espacio y reverberación | 37 |
+| Doblaje e intervenciones | 33 |
+| Niveles de voz e instrumental | 21 |
+| Detección de intérpretes | 19 |
+| Edición de tramos y silencios | 17 |
+| Datos de la pista | 17 |
+| Plan de efectos | 16 |
+| Color tonal | 16 |
+| Mezcla y máster | 15 |
+| Video e imagen | 15 |
+| Precisión de los efectos | 10 |
+| Afinación | 10 |
+| Dicción y consonantes | 10 |
+| Importación por enlace | 10 |
+| Huella del equipo y licencia | 9 |
+| Quitar sala del original | 9 |
+| Dinámica y respiración | 8 |
+| Cruces entre cantantes | 7 |
+| Atadura de la licencia al equipo | 7 |
+| Aislamiento de las pruebas | 5 |
+| Efectos aplicados al render | 5 |
+| Análisis de efectos del tema | 4 |
+| Interfaz: progreso, tiempos, historial, exportación, avisos previos | 76 |
+| **Total** | **376** |
+
+<sub>300 sobre el motor de audio en 22 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
+
+<!-- CUENTA-PRUEBAS:FIN -->
+
+### El doblaje aparece con 33 y por eso mismo está «en pruebas»
+
+Mirando la tabla, 33 parece mucho: es la segunda cifra más alta. **Y sin embargo es
+justamente el motivo de la advertencia.** Hay que leerlo en contexto.
+
+Esos 33 son de las funciones con más comprobaciones propias, sí — pero es que **el doblaje
+no es una función, es un sistema nuevo entero** dentro de la aplicación. Tiene su propia
+detección de intervenciones, su propio reparto de personajes, su sincronía con la imagen,
+sus avisos de entrada, su grabación y su montaje sobre el vídeo.
+
+Compáralo con lo que costó que la otra mitad del programa funcionara bien:
+
+| | Comprobaciones | Grupos |
+|---|---:|---:|
+| La cadena de audio (separación, clonación, reparto, tratamiento) | 267 | 21 |
+| El doblaje | 33 | 1 |
+
+**267 comprobaciones repartidas en 21 grupos** hicieron falta para que clonar una voz sobre
+una canción funcione de verdad. El doblaje tiene una ambición parecida y va con 33.
+
+No es que esté sin probar: está probado en su lógica —que los tramos se calculen bien, que
+los avisos caigan donde toca, que el reparto sea el correcto— y todas esas comprobaciones
+pasan. Lo que no tiene todavía es **la cobertura que se ganó el resto a base de romperse**,
+ni el uso real de gente distinta con vídeos distintos, que es lo único que enseña dónde
+falla de verdad un sistema así.
+
+Por eso la marca sigue puesta. Cuando ese número se parezca al de la cadena de audio y haya
+horas de uso ajeno detrás, se quita.
+
+### Y cuando una falla
+
+**El cambio no se publica.** No hay «lo dejo así de momento» ni «ya lo miro luego»: o pasa,
+o no sale de aquí.
 
 Y cada vez que aparece un fallo que las pruebas no vieron venir, lo primero es **escribir la
 prueba que lo habría cazado**, antes de arreglarlo. Así el mismo fallo no puede volver dos
