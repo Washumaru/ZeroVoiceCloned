@@ -42,10 +42,25 @@ con dos cantantes, cada uno sustituido por un modelo distinto.
 
 Conviene saber con qué está hecha, porque es lo que hace la prueba interesante:
 
-**La voz clonada es un modelo mal entrenado.** No es una demostración con material de
-laboratorio: es uno de los modelos que recuperé, entrenado con poco tiempo y con audio
-mediocre — de los que suenan apagados y deshilachados en cuanto suben. Suena bien **por lo
-que el programa hace con él**, no porque el modelo sea bueno.
+**Las dos voces son modelos mal entrenados.** No es una demostración con material de
+laboratorio: son de los que recuperé, entrenados con poco tiempo y con audio mediocre — de
+los que suenan apagados y deshilachados en cuanto suben. Suenan bien **por lo que el
+programa hace con ellos**, no porque los modelos sean buenos.
+
+Y esto se puede poner en números. Los dos peores modelos de este proyecto, medidos antes y
+después de pasar por la cadena:
+
+| | Techo de frecuencia | Banda 8–12 kHz |
+|---|---|---|
+| Modelo A, crudo | 7 276 Hz | −69,0 dB |
+| Modelo A, procesado | **15 914 Hz** | **−26,1 dB** |
+| Modelo B, crudo | 8 376 Hz | −56,3 dB |
+| Modelo B, procesado | **15 920 Hz** | **−26,6 dB** |
+
+Un modelo que se apagaba a los 7 276 Hz —sordo de fábrica, incapaz de producir el aire de
+una voz— sale por encima de los 15 900. Son **+43 dB** recuperados en la banda donde vive
+el brillo. Y no es una mejora que haya que buscar con lupa: **a oído la diferencia es
+enorme**, de voz apagada y tapada a voz que se sostiene delante de la mezcla.
 
 De eso se encarga **Vocal Enhance**: le presta la banda alta que el modelo no sabe
 producir, le copia la sala y el color de la canción, le devuelve el ataque de las frases,

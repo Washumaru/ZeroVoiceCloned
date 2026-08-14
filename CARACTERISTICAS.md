@@ -97,9 +97,46 @@ voces clonadas se pisaban y salía un sonido grave y deformado —«voz de demon
 imposible de diagnosticar escuchando el resultado: sonaba a fallo del modelo y era un fallo
 del reparto.
 
+### La demostración, y por qué esa canción y no otra
+
+**[▶ Ver el sistema multi-voz funcionando](capturas/multivoz-demo.mp4)**
+
+La canción de la demostración no está elegida por bonita: es de las más difíciles que se
+le pueden dar a un sistema así, y por eso sirve como prueba.
+
+**Dos voces con registros opuestos.** Un cantante y una cantante, con el tono a mucha
+distancia. Eso obliga a que cada voz lleve su propio transporte y su propio modelo, y
+convierte cada relevo en un salto de registro entero — no en un cambio de matiz. Si el
+reparto se equivoca de tramo, no se disimula: se oye a la primera.
+
+**Y el original va cargado de autotune.** Ese es el segundo problema, y es de los que no se
+ven venir: si la voz clonada sale natural encima de una producción con corrección de tono
+marcada, suenan a dos grabaciones distintas pegadas. Por eso el programa **mide cuánto
+autotune lleva el vocal original** y se lo aplica al clon. Sin eso, el clon puede ser
+perfecto y aun así sonar fuera de sitio.
+
+**Y las dos voces que se ponen encima son modelos mal entrenados**, de los recuperados.
+Los peores de este proyecto se apagaban a **7 276 y 8 376 Hz** —sordos de fábrica— y salen
+de la cadena por encima de los **15 900 Hz**, con +43 dB recuperados en la banda del
+brillo. Que aguanten en las condiciones de esta canción es justo lo que se quería
+demostrar, y no es una diferencia que haya que buscar: se oye a la primera.
+
+> La canción tiene derechos de autor y se usa **como prueba real**, no como producto: una
+> mezcla comercial de verdad, con sus coros y sus dos voces, que es lo único que demuestra
+> que esto funciona fuera de un caso preparado. No se distribuye la canción ni se reclama
+> ningún derecho sobre ella.
+
 ### Los relevos entre cantantes, sin costuras
 
-Tres controles que existen porque cortar y pegar voces deja marcas audibles:
+Es la parte que más veces se rompió de todo el programa, y la que más trabajo lleva encima.
+
+Cortar una voz y pegar otra deja marca **siempre**: un clic si el corte cae en mitad de una
+onda, un salto de nivel si las dos voces no venían igual de fuertes, una nota desafinada si
+el motor arranca en frío, o —lo peor— el cantante original asomando por debajo durante una
+décima de segundo. Cada uno de esos fallos hubo que encontrarlo escuchando, entender por
+qué pasaba y taparlo por separado.
+
+Tres controles que existen por eso mismo:
 
 - **Fundido de relevo** (30 ms por defecto): el cruce entre un cantante y el siguiente.
   Sin él se oye el corte.
