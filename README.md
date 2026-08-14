@@ -9,6 +9,7 @@ sale de tu disco.
 ![versión](https://img.shields.io/badge/versión-1.0.0-red)
 ![sistema](https://img.shields.io/badge/Windows-10%20u%2011-lightgrey)
 ![prueba](https://img.shields.io/badge/pruébalo-gratis-brightgreen)
+![tienda](https://img.shields.io/badge/versión%20completa-25%20USD-blue)
 
 ---
 
@@ -16,6 +17,9 @@ sale de tu disco.
 
 **[⬇ Descargar la versión de prueba](https://github.com/Washumaru/ZeroVoiceCloned/releases/latest)**
 · 1,3 GB · Windows 10 u 11
+
+**[🛒 Comprar la versión completa — 25 USD, pago único](https://washumaru.gumroad.com/l/ZeroVoiceCloned)**
+· ya a la venta
 
 Descomprime todo el ZIP en una carpeta tuya y abre `ZeroVoiceCloned.exe`. No hay
 instalación, no descarga nada y funciona sin conexión: el programa trae dentro todo lo que
@@ -63,14 +67,6 @@ procesarla, así que el resto del tema no se separa ni se guarda en ningún mome
 No incluye: exportar la canción completa, exportar el vídeo, repartir varias voces en un
 mismo tema ni montar doblajes.
 
-**Versión completa — 25 USD, pago único.** Una clave, tres computadoras, actualizaciones
-incluidas.
-
-> 🕓 **Todavía no está a la venta.** La tienda estará lista en unos días. Mientras tanto,
-> la versión de prueba de arriba es el programa entero: mismo motor y misma calidad, con
-> el límite de 30 segundos por canción. Pruébala y decide sin prisa — cuando abra la
-> venta, este enlace aparecerá aquí.
-
 ### Verás errores en rojo en la consola, y son normales
 
 La versión de prueba **no incluye** las partes del programa que se encargan del vídeo y
@@ -90,6 +86,25 @@ Mientras tanto, la regla para saber si algo va mal de verdad es simple:
   duración y el formato de la canción, y las últimas líneas de la ventana.
 
 En la versión completa no aparecen: esas partes sí están dentro.
+
+---
+
+## La versión completa
+
+**[Comprar — 25 USD, pago único](https://washumaru.gumroad.com/l/ZeroVoiceCloned)** · una
+clave, tres computadoras, actualizaciones incluidas. Sin suscripción y sin caducidad.
+
+Quita el límite de 30 segundos y añade lo que la prueba no trae: exportar la canción
+completa, exportar el vídeo con la voz nueva, repartir varias voces en un mismo tema —con
+sus duetos por tramo— y el modo de doblaje.
+
+Al comprar recibes la clave en el propio recibo. Se pega en **Ajustes**, dentro del
+programa, y solo hace falta conexión en ese momento: después funciona sin internet, sin
+cuenta y sin caducidad. Reinstalar o formatear la misma computadora no gasta cupo; el
+detalle está en [LICENCIA-Y-ACTIVACION.md](LICENCIA-Y-ACTIVACION.md).
+
+No hay que volver a descargar nada distinto: es el mismo programa, con las partes de vídeo
+y doblaje incluidas.
 
 ---
 
@@ -164,8 +179,8 @@ es la consola ni dónde está: el fallo se quedaba sin diagnosticar por no poder
 
 ## Cómo se comprueba lo que se afirma
 
-Nada de la cadena de audio se cambia «a oído y listo». Hay **376 comprobaciones
-automáticas** que se ejecutan antes de dar por bueno un cambio —300 sobre el motor de audio
+Nada de la cadena de audio se cambia «a oído y listo». Hay **385 comprobaciones
+automáticas** que se ejecutan antes de dar por bueno un cambio —309 sobre el motor de audio
 y 76 sobre la interfaz— y la cobertura es más alta justo en las partes que más veces se
 rompieron: la cobertura sigue a las cicatrices, no al tamaño del código.
 

@@ -65,7 +65,7 @@ el problema.
 
 ## Las pruebas automáticas
 
-**376 comprobaciones** que se ejecutan antes de dar por bueno un cambio: 300 sobre el motor
+**385 comprobaciones** que se ejecutan antes de dar por bueno un cambio: 309 sobre el motor
 de audio y 76 sobre la interfaz.
 
 No están repartidas por igual. **La cobertura sigue a las cicatrices**: las zonas con más
@@ -93,6 +93,7 @@ otra parte.
 | Importación por enlace | 10 |
 | Huella del equipo y licencia | 9 |
 | Quitar sala del original | 9 |
+| Reparación del clon (agudos y caídas) | 9 |
 | Dinámica y respiración | 8 |
 | Cruces entre cantantes | 7 |
 | Atadura de la licencia al equipo | 7 |
@@ -100,9 +101,9 @@ otra parte.
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
 | Interfaz: progreso, tiempos, historial, exportación, avisos previos | 76 |
-| **Total** | **376** |
+| **Total** | **385** |
 
-<sub>300 sobre el motor de audio en 22 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
+<sub>309 sobre el motor de audio en 23 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
 
 <!-- CUENTA-PRUEBAS:FIN -->
 
@@ -120,10 +121,10 @@ Compáralo con lo que costó que la otra mitad del programa funcionara bien:
 
 | | Comprobaciones | Grupos |
 |---|---:|---:|
-| La cadena de audio (separación, clonación, reparto, tratamiento) | 267 | 21 |
+| La cadena de audio (separación, clonación, reparto, tratamiento) | 276 | 22 |
 | El doblaje | 33 | 1 |
 
-**267 comprobaciones repartidas en 21 grupos** hicieron falta para que clonar una voz sobre
+**276 comprobaciones repartidas en 22 grupos** hicieron falta para que clonar una voz sobre
 una canción funcione de verdad. El doblaje tiene una ambición parecida y va con 33.
 
 No es que esté sin probar: está probado en su lógica —que los tramos se calculen bien, que
@@ -142,7 +143,7 @@ o no sale de aquí.
 
 Y cada vez que aparece un fallo que las pruebas no vieron venir, lo primero es **escribir la
 prueba que lo habría cazado**, antes de arreglarlo. Así el mismo fallo no puede volver dos
-veces. Buena parte de esas 376 nacieron exactamente así.
+veces. Buena parte de esas 385 nacieron exactamente así.
 
 ---
 

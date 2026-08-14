@@ -21,6 +21,19 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
 
 ### Corregido
 
+- **Menos voz rota y soplada en las notas altas.** Fuera del registro que vio al
+  entrenarse, el modelo deja de producir voz con tono y produce ruido. Medido sobre una
+  canción real, en la zona aguda había **más ruido que armónicos** (−1,27 dB de relación
+  armónicos/ruido, cuando el original tenía +5,16). Es lo que se oye como voz deshilachada
+  o susurrada al subir, y es el defecto típico de un modelo entrenado con poco material.
+
+  Ahora se atenúa el ruido que queda **entre** los armónicos, solo en los pasajes altos y
+  solo donde de verdad se ha desplomado. Resultado: de −1,27 a **+1,86 dB**. Los graves no
+  se tocan (5,59 → 5,58), porque ahí el clon ya estaba sano.
+
+  No inventa armónicos a propósito: fabricar la voz que el modelo no produjo es lo que
+  acaba sonando a robot. Solo se quita lo que no era voz.
+
 - **La voz clonada ya no desaparece en los pasajes más agudos.** En las notas más altas
   el modelo se sale del registro que vio al entrenarse y deja de producir voz: se oía
   cómo la voz se apagaba a mitad de una frase mientras el instrumental seguía. Medido
