@@ -115,6 +115,31 @@ te pido que lo compruebes en tu equipo antes de pagar. En
 
 ---
 
+## Control real, no un botón de «hazlo bonito»
+
+**El motor de tono se elige por separado, y puede ser distinto para cada modelo.** Hay
+cuatro —RMVPE, Crepe, Harvest y PM— y no es una preferencia estética: un modelo entrenado
+con voz muy limpia rinde con Crepe, y otro con material sucio aguanta mejor con RMVPE.
+Como se asigna por voz, en una canción con dos cantantes cada uno puede ir con el suyo.
+
+**El tono se calcula solo, si el modelo tiene su índice.** El programa mide el registro
+real del modelo y el de la canción, y propone el transporte en semitonos que mete el tema
+dentro de lo que ese modelo sabe cantar. Un modelo grave no puede hacer un tema agudo por
+mucho que se le insista: nunca vio esas notas.
+
+Y aquí está la ventaja de **crear el índice dentro del programa**: ese cálculo necesita el
+`.index`, y muchos modelos que circulan por ahí lo han perdido. En vez de dejarte sin la
+función, el programa lo reconstruye desde cualquier grabación de esa persona —vale una nota
+de voz— y a partir de ahí el tono automático funciona. No hay que reentrenar nada ni buscar
+el archivo original.
+
+**Y para juzgar el resultado hay un comparador A/B**: la voz original y la clonada en el
+mismo segundo, cambiando de una a otra al instante, o **sonando las dos a la vez**. Ese
+tercer modo enseña lo que alternando no se oye — si el clon entra tarde, si se queda corto
+en una frase o si se apaga en una nota alta.
+
+---
+
 ## Cuando algo falla, te dice qué pasó
 
 La mayoría de los programas de este tipo fallan de una de dos formas: se caen enteros, o
