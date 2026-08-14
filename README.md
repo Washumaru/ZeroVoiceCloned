@@ -115,6 +115,28 @@ te pido que lo compruebes en tu equipo antes de pagar. En
 
 ---
 
+## Cuando algo falla, te dice qué pasó
+
+La mayoría de los programas de este tipo fallan de una de dos formas: se caen enteros, o
+devuelven algo raro sin decir por qué. Aquí hay tres capas para que eso no ocurra.
+
+**Avisa antes de gastar tu tiempo.** Antes de ponerse a procesar comprueba lo evidente —que
+el archivo se pueda abrir, que tenga audio, que dure lo suficiente— y lo dice en el momento,
+no después de diez minutos de trabajo.
+
+**Un fallo no tumba la canción.** Si un cantante falla al clonarse, esa parte sale con la
+voz original y **el resto del tema se termina igual**. Pierdes una voz, no la sesión entera.
+
+**Y te dice exactamente qué pasó.** Al terminar aparece un aviso, *«Cantantes que salieron
+SIN clonar»*, con el motivo de cada uno: si le faltaba modelo asignado, o si fue un error
+del motor — y en ese caso, hasta el punto exacto del programa donde ocurrió.
+
+Hay además un botón que **copia todos los detalles al portapapeles** para que puedas
+pegarlos al pedir ayuda. Antes ponía «mira la consola del programa», y casi nadie sabe qué
+es la consola ni dónde está: el fallo se quedaba sin diagnosticar por no poder señalarlo.
+
+---
+
 ## Cómo se comprueba lo que se afirma
 
 Nada de la cadena de audio se cambia «a oído y listo». Hay **376 comprobaciones
