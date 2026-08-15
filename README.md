@@ -233,6 +233,40 @@ es la consola ni dónde está: el fallo se quedaba sin diagnosticar por no poder
 
 ---
 
+## Con qué se ha probado
+
+No solo con canciones cómodas. El programa se ha ido puliendo contra los casos que lo
+rompían:
+
+- **Canciones en varios idiomas.**
+- **Ocho cantantes en un mismo tema**, repartidos cada uno por su cuenta.
+- **Hombres y mujeres en la misma canción**, que obliga a que cada voz lleve su propio
+  transporte y su propio modelo.
+- **Voces muy agudas y voces muy graves**, que son los dos extremos donde los modelos se
+  rompen de formas distintas.
+
+**Los cubre todos, y ninguno al 100 %.** Falta trabajo y quedan mejoras pendientes en cada
+uno de esos frentes. Pero ya no son casos que tumben el resultado: se resuelven, y suenan
+bien. Pueden sonar mejor, y en eso sigo.
+
+---
+
+## Cuando el enlace de YouTube falla
+
+Si pegas un enlace y dice que no se pudo descargar, **el problema no está en el programa**.
+YouTube cambia con frecuencia cómo sirve el audio y bloquea las descargas según la
+conexión, el vídeo o el momento del día.
+
+**No hay una solución de verdad.** Lo que funciona es volver a intentarlo —a veces al
+segundo o tercer intento entra— o descargar el audio por tu cuenta y subirlo como archivo,
+que da exactamente el mismo resultado.
+
+Lo digo aquí y no en la letra pequeña porque es el fallo con el que más gente se va a
+encontrar, y porque no quiero que nadie concluya que el programa está roto por algo que
+pasa del otro lado.
+
+---
+
 ## Cómo se comprueba lo que se afirma
 
 Nada de la cadena de audio se cambia «a oído y listo». Hay **385 comprobaciones
