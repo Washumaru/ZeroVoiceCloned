@@ -13,6 +13,14 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
 
 ### Corregido
 
+- **La opción «consonantes en pasada aparte» iba sin proteger ninguna consonante.** El
+  mando de protección del motor va al revés de lo que sugiere su nombre: es la fracción de
+  timbre del modelo que se deja pasar donde no hay tono, así que **bajarlo protege más**, y
+  a partir de 0,5 el motor se salta la etapa entera. La pasada de consonantes lo ponía
+  justo en 0,5. Es decir: de las dos conversiones que costaban el doble de tiempo, la que
+  existía para arreglar las consonantes era la única que iba con la protección apagada.
+  Ahora usa 0,15, que deja pasar el 85 % de la articulación del cantante original.
+
 - **La última palabra de cada voz salía cortada.** La cadena de limpieza se comía hasta
   46 milisegundos del final de todo lo que procesaba. En una canción de una sola voz eso
   es el final de la última frase; con varios cantantes, el final de **cada uno** de sus
@@ -130,6 +138,170 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   de volumen baja ligeramente (7,31 % → 7,20 %).
 
 ### Nuevo
+
+- **El proyecto cabe en un archivo.** Hasta ahora una sesión vivía en una carpeta con
+  nombre de identificador, dentro de un directorio llamado «temporal». El trabajo de una
+  tarde —repartir cantantes, recortar, ajustar veinticinco mandos— no se podía guardar en
+  un sitio propio, ni llevar a otro ordenador, ni distinguir de las demás. Ahora se guarda
+  como un `.zvc` y se abre donde sea: la canción, las pistas separadas, los tramos de cada
+  cantante, los recortes, las regiones de efectos, la letra alineada y todos los mandos.
+
+  **Los modelos de voz no van dentro**, y no es un descuido. Pesan 55 MB cada uno, así que
+  un proyecto a tres voces se iría por encima de los 250 MB llevando copias de archivos que
+  ya están en tu carpeta. Y pesa más otra razón: compartir un proyecto es compartir en qué
+  trabajaste; compartir un modelo de voz es otra cosa, y no debería pasar sin querer dentro
+  de un archivo que mandas «para que veas cómo quedó». Lo que sí viaja es el **nombre** de
+  cada modelo, y al abrir el programa mira tu carpeta y dice cuáles faltan — antes de meterte
+  en la sesión, no después.
+
+  El audio va dentro en FLAC, sin perder una muestra: comprimir un WAV con ZIP no ahorra
+  casi nada y en FLAC ocupa cerca de la mitad. Y si el proyecto trae las pistas separadas,
+  al abrirlo no hay que volver a separar; si trae la letra, no hay que volver a transcribir.
+
+- **Bajarse las pistas por separado.** Voz clonada, instrumental, voz original y voz
+  principal sin coros, cada una en su archivo, para seguir la mezcla en otro programa. Los
+  archivos ya estaban en la carpeta de la sesión; lo que faltaba eran las dos cosas que los
+  hacen servibles fuera.
+
+  **El nombre.** `converted_vocals.wav` arrastrado a un secuenciador, dentro de una carpeta
+  con las pistas de otras tres canciones, es indistinguible. Ahora salen como
+  «Mi canción - Voz clonada.wav», con el tema delante porque es lo que ordena la carpeta de
+  descargas y así las pistas de un mismo trabajo quedan juntas.
+
+  **La proporción entre ellas**, que es lo que de verdad faltaba. La separación deja la voz
+  y el instrumental cada uno a su tope — bien para escucharlos sueltos en el editor, y una
+  trampa fuera: sumados no dan la canción, porque la voz es la que más se subió. El
+  programa apuntaba los dos factores, así que ahora los deshace al exportar y las pistas
+  suenan unas respecto de otras como sonaban en el disco. Se puede apagar si lo que se
+  quiere es una pista sola a tope. En sesiones separadas con una versión anterior, que no
+  apuntaba esos niveles, el programa lo dice en vez de ofrecer un modo que no haría nada.
+
+- **El clon pronuncia las palabras como las pronuncia el cantante original.** Es lo que
+  hacía que un clon sonara a que «mastica» la letra, se come las eses o canta en otro
+  idioma — y la causa tenía nombre desde el principio: el **índice**.
+
+  El índice de un modelo es un banco de retazos de la voz de esa persona. Con el mando al
+  0,75, cada instante de la canción se sustituye en un 75 % por lo más parecido que
+  encuentre en ese banco. Sobre una vocal sostenida es exactamente lo que se quiere: ahí
+  vive el parecido. Sobre una consonante es un desastre, porque el banco está lleno de
+  vocales —en cualquier grabación cantada las vocales ocupan casi todo el tiempo— y lo más
+  parecido a una «s» dentro de un montón de vocales sigue siendo una vocal. La «s» del
+  cantante original se cambiaba por algo que no era una «s».
+
+  Ahora ese mando **deja de ser un número para toda la canción**. Con la letra alineada, el
+  programa sabe décima a décima si suena una vocal o una consonante, y mueve el mando por
+  su cuenta: manda el índice donde está la identidad de la voz, y se aparta donde lo único
+  que hacía era borrar la articulación. La protección de consonantes hace el camino
+  inverso a la vez.
+
+  **No cuesta tiempo.** Es la misma conversión de siempre con dos números que se mueven
+  mientras suena, no una segunda pasada. De hecho hace casi innecesaria la opción de
+  «consonantes en pasada aparte», que perseguía lo mismo por fuera convirtiendo el tema
+  dos veces.
+
+  Lo que esto **no** arregla, y conviene saberlo: un modelo cuyo techo esté en 7 kHz no
+  puede producir una «s» nítida por mucho que se le aparte el índice — ahí la consonante
+  se injerta del original, que es lo que ya hacía el injerto de banda alta.
+
+- **El programa ya sabe qué se está cantando, y no sólo cuánta energía hay.** Es el
+  cambio más de fondo de esta versión. Hasta ahora todo —el reparto de cantantes, los
+  relevos, la dicción, la pasada de consonantes— trabajaba mirando energía y tono, sin
+  enterarse de qué palabra sonaba. Varias cosas fallaban exactamente por eso. Ahora se
+  transcribe la voz una vez por canción, se apunta cuándo suena cada palabra, y el resto
+  del programa lo lee.
+
+  Lo que cambia con eso:
+
+  - **Los relevos entre cantantes se colocan en frontera de palabra.** Antes se buscaba el
+    punto más callado alrededor del cambio, y en una nota larga sostenida el punto más
+    callado está *dentro* de la palabra: el corte quedaba técnicamente en el sitio más
+    silencioso y aun así partía la sílaba.
+  - **La pasada de consonantes deja de convertir la canción entera dos veces.** Sabía que
+    unos ajustes van bien a las vocales y otros a las consonantes, pero no dónde estaba
+    cada cosa, así que hacía el tema completo por duplicado — y por eso venía apagada, que
+    tarda el doble. Con la letra delante sabe qué trozo lo necesita de verdad.
+  - **Sale la letra sincronizada**, en `.lrc` para karaoke y `.srt` para el vídeo.
+
+  Se hace **antes de clonar**, porque las dos primeras cosas se deciden durante el render.
+  Y todo lo que la usa sigue funcionando igual que antes si no se hace: es opcional, no un
+  paso nuevo obligatorio.
+
+  Corre en su propio entorno (`venv_alineacion/`), como ya pasa con la desreverberación:
+  el motor de transcripción necesita una versión de numpy que rompería Demucs.
+
+- **Saber de antemano dónde se va a forzar la voz.** Cuando la canción pide notas que el
+  modelo nunca vio, el motor extrapola y saca voz rota, soplada o afónica. El programa ya
+  repara parte de eso, pero reparar tiene un límite y la única forma de enterarse era
+  escuchar el render entero. Ahora, junto al tono de cada cantante, hay un botón que dice
+  qué tramos se salen del registro del modelo, cuánto y hacia dónde — con el tono que
+  tengas puesto ya aplicado, que es lo que de verdad le llega al motor.
+
+  **No se transporta tramo a tramo, y es a propósito.** Bajar el puente una octava para
+  que entre en el modelo haría que el clon cantase ese puente por debajo del instrumental:
+  dejaría de sonar forzado para sonar equivocado, que es peor. Lo que se propone es
+  cambiar de modelo para esa voz, que es lo que sí arregla la causa.
+
+- **Una canción de referencia para el equilibrio del máster.** El programa ya resolvía
+  *cuánto* suena la mezcla, pero no decía nada de *cómo* se reparte esa energía entre
+  graves, medios y agudos — y ese reparto es lo que hace que una mezcla suene casera al
+  lado de un disco. Ahora se suelta un tema que suene como quieres que suene el tuyo y el
+  programa mide la diferencia banda a banda y la corrige.
+
+  Se copia **la forma de la curva, nunca el volumen**: las dos canciones se comparan
+  referidas a sus propios medios, así que lo que se traslada es «ésta lleva 3 dB más de
+  graves en relación con su voz» y jamás «ésta suena más fuerte». Tampoco se copia la
+  dinámica, ni el estéreo, ni la reverberación: eso está en la mezcla y en el arreglo, y
+  un ecualizador no puede traerlo — intentarlo sólo destruye lo que había.
+
+  Va a media fuerza y ninguna banda se mueve más de 4 dB. Una diferencia mayor no es un
+  desequilibrio que arreglar; es que las dos canciones no se parecen, y entonces el
+  programa lo dice en vez de deformar la tuya para acercarla. La corrección se puede
+  **ver dibujada antes de aplicarla**.
+
+- **Destino de entrega elegible.** Además de la canción original, que sigue siendo lo que
+  se usa por defecto, se puede apuntar a Spotify/YouTube (−14 LUFS), Apple Music (−16) o
+  club (−8). No se cambió el comportamiento normal a propósito: igualar a −14 porque lo
+  pide un servicio cambiaría el carácter de un disco masterizado a −8 queriendo, y lo que
+  se pidió fue cambiar una voz, no remasterizar la canción de nadie.
+
+- **Deshacer alcanza ya al cambio de voz y de tono.** Ctrl+Z revertía recortes, tramos y
+  efectos, pero no el modelo asignado a un cantante ni su tono — que son justo las dos
+  cosas que se tantean una y otra vez hasta dar con la buena. Un deshacer que funciona a
+  medias es peor que no tenerlo, porque enseña a no fiarse de él.
+
+- **El estado del modelo se dice donde se elige el modelo.** Hasta dónde llega un modelo
+  —su techo— y si tiene índice deciden en silencio lo bien que puede sonar un clon, y las
+  dos cosas sólo se veían en Ajustes, es decir en una pantalla a la que se entra cuando
+  algo ya salió mal. Ahora aparecen debajo del desplegable, tanto en una voz como en cada
+  cantante del reparto: un modelo que se apaga en 7 kHz lo avisa antes de clonar. No es
+  una alarma ni hay nada que encender —el injerto de banda alta ya compensa ese techo
+  siempre—, es para que un clon apagado se atribuya al modelo, que es lo que se puede
+  cambiar, y no a un mando de la voz.
+
+- **Comparar a ciegas.** En el comparador, un interruptor tapa las etiquetas: los botones
+  pasan a decir A y B, y cuál es cuál se sortea en cada ronda. Se elige la que más gusta y
+  sólo entonces se revela. Sabiendo cuál es el clon se le buscan defectos, y sabiendo cuál
+  es el original se le perdonan — y quien compara es justo quien acaba de pasarse la tarde
+  ajustando el clon y quiere que haya salido bien. El programa lleva la cuenta de las
+  rondas, y con menos de tres lo dice claro: con tan pocas, cualquier resultado es
+  casualidad.
+
+- **Recetas: los mandos con los que una canción quedó bien, guardados con un nombre.** El
+  programa tiene veinticinco mandos entre la voz, el motor y la mezcla. Acertar con ellos
+  costaba una tarde, y esa tarde se perdía: al día siguiente no había forma de repetir el
+  resultado salvo acordarse de veinticinco números. Ahora se guardan con nombre desde
+  Ajustes, se vuelven a poner de una vez, y se pueden llevar a otro equipo o pasárselas a
+  otra persona como un archivo suelto.
+
+  **Antes de aplicar se enseña qué va a cambiar**, mando a mando, con el valor de ahora y
+  el que va a quedar. Sustituir a ciegas veinticinco números sobre una configuración que
+  costó trabajo es justo el momento en el que una herramienta pierde la confianza de quien
+  la usa.
+
+  Una receta guarda preferencias, nunca la canción: los tramos de cada cantante, los
+  silencios y el reparto de modelos se quedan como están. Y una receta de una versión
+  anterior a la que le falten mandos se aplica igual — los que no trae se quedan como los
+  tengas, y el panel dice cuántos son.
 
 - **La canción termina al volumen de la canción original, y ya no distorsiona en el MP3.**
   Hasta ahora lo único que protegía la mezcla final era bajarla si algún pico se pasaba.
