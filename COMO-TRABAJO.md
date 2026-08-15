@@ -79,6 +79,7 @@ otra parte.
 |---|---:|
 | Espacio y reverberación | 37 |
 | Doblaje e intervenciones | 33 |
+| Velocidad y escala de la afinación | 24 |
 | Relevos entre cantantes | 21 |
 | Niveles de voz e instrumental | 21 |
 | Detección de intérpretes | 19 |
@@ -91,8 +92,8 @@ otra parte.
 | Color tonal | 16 |
 | Mezcla y máster | 15 |
 | Video e imagen | 15 |
+| Afinación | 11 |
 | Precisión de los efectos | 10 |
-| Afinación | 10 |
 | Dicción y consonantes | 10 |
 | Importación por enlace | 10 |
 | Consonantes en pasada aparte | 9 |
@@ -106,9 +107,9 @@ otra parte.
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
 | Interfaz: progreso, tiempos, historial, exportación, avisos previos | 76 |
-| **Total** | **468** |
+| **Total** | **493** |
 
-<sub>392 sobre el motor de audio en 28 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
+<sub>417 sobre el motor de audio en 29 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
 
 <!-- CUENTA-PRUEBAS:FIN -->
 

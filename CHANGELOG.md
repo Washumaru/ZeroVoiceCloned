@@ -73,6 +73,31 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   corrección se desvanece medio segundo después, así que la estrofa sigue siendo más floja
   que el estribillo.
 
+- **La corrección de tono automática casi nunca se activaba, y cuando lo hacía movía las
+  notas a donde no debía.** Tres fallos encadenados en la misma función:
+
+  El detector medía la afinación del original agrupando el tono en notas, y las agrupaba
+  cortando donde el tono pega un salto brusco. Un cantante que **se desliza** de una nota a
+  la siguiente no pega ningún salto brusco, así que las dos notas quedaban pegadas en una
+  sola cuyo centro cae entre ambas — a 30 o 40 cents de cualquier nota real, cantara como
+  cantara la voz. Es decir: sobre canto natural, que siempre lleva deslizamientos, el
+  detector medía su propio error y concluía «esta voz no está corregida». Medido: la misma
+  voz daba 0,54 sin deslizamientos y 0,07 con ellos; ahora da 0,54 y 0,46.
+
+  El corrector, por su parte, recorría el audio en bloques fijos de 80 milisegundos
+  contados desde el principio del archivo. Las notas no empiezan ahí, así que un bloque
+  cualquiera caía a caballo entre dos: se le calculaba un único tono y se desplazaba
+  entero, con lo que **media nota se corregía hacia la altura de la otra**.
+
+  Y apuntaba siempre al semitono más cercano de los doce. Una nota sesenta cents alta no
+  se acerca así a la nota que se pretendía: se clava en **la de arriba**, que a menudo no
+  está en la canción. Eso no se oye como robótico, se oye como desafinado.
+
+  Ahora las notas se detectan de verdad —separando las asentadas de los deslizamientos—,
+  cada una se corrige como una unidad, y cuando la canción está lo bastante clara como
+  para saber sobre qué notas se mueve, la corrección apunta a ellas y no a las doce.
+  Medido sobre un clon desafinado: de 26,2 cents de desviación a 4,5.
+
 - **El «Radio de filtro» no hacía nada.** El mando llegaba hasta el motor y el motor lo
   ignoraba salvo con un algoritmo de tono concreto — y ni siquiera entonces usaba el valor
   elegido. Se movía y no cambiaba ni una muestra del resultado. Ahora suaviza de verdad el
@@ -126,6 +151,25 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   llegar hasta ahí obligara al limitador a trabajar más de 6 dB, se sube menos y se acepta
   quedarse por debajo: una canción algo más floja se arregla con el mando del volumen, y
   una aplastada no se arregla con nada.
+
+- **El clon copia también CÓMO de rápido se afina el original, no solo cuánto.** Es lo que
+  el propio manual admitía que no se lograba: «se nota que el clon está menos afinado a
+  máquina que la voz que sustituye». La causa no era la cantidad de corrección — era otra
+  cosa que no se estaba mirando.
+
+  Dos voces pueden acabar igual de pegadas a la nota y sonar completamente distintas según
+  **cómo llegan** a ella. Si el tono salta de golpe al empezar cada nota, se oye a máquina;
+  si se desliza, no. El programa copiaba la profundidad de la corrección y le dejaba al
+  clon sus propios deslizamientos naturales, así que el clon acababa igual de afinado
+  encima de una producción que saltaba de golpe. Sonaban a dos grabaciones distintas por
+  ese detalle y por ningún otro.
+
+  Ahora se mide también esa velocidad en el original y se le da la misma al clon.
+
+  No es una medida exacta y conviene saberlo: tiene un suelo de unos 12 milisegundos —por
+  debajo de eso la ventana de análisis ya no distingue— y en un caso extremo de laboratorio
+  se sale de sitio. Sirve porque lo que hay que acertar es la diferencia entre «entra de
+  golpe» y «entra deslizándose», y eso lo separa por un factor de siete.
 
 - **El tono se repara antes de clonar, no después.** El motor decide qué nota canta el clon
   a partir del tono que detecta en el original, y ese detector se equivoca siempre de las

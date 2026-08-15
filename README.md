@@ -172,15 +172,24 @@ o un tramo puede quedar mal repartido. Si vas a comprar principalmente por esa f
 tenlo en cuenta.
 
 **El autotune todavía no queda como en el original, y llevo desde el principio con eso.**
-El programa mide cuánta corrección de tono lleva la voz original y se la aplica al clon —
-sin eso, una voz clonada natural encima de una producción muy corregida suena a dos
-grabaciones distintas pegadas. Funciona, y mejora el resultado. Pero **no llega a igualar
-el tratamiento del original**: en canciones con mucho autotune se nota que el clon está
-menos corregido que la voz que sustituye.
+El programa mide el tratamiento de tono de la voz original y se lo aplica al clon — sin
+eso, una voz clonada natural encima de una producción muy corregida suena a dos grabaciones
+distintas pegadas.
 
-Es de las primeras cosas que empecé y de las que sigo tocando en cada versión. No hay una
-solución de una tarde: cada intento se mide contra el original y la mayoría no mejora lo
-suficiente como para entrar. Cuando quede a la altura, se dirá en el registro de cambios.
+**Durante mucho tiempo esto no llegaba a igualar al original, y aquí decía exactamente
+eso.** El motivo resultó ser que se estaba midiendo una sola cosa de las tres que hacen
+falta: cuánto se corrige, pero no con qué rapidez entra la corrección ni hacia qué notas.
+La segunda es la que importaba — dos voces pueden acabar igual de pegadas a la nota y sonar
+completamente distintas según si el tono salta de golpe al empezar cada nota o se desliza
+hasta ella. El clon acababa igual de afinado y conservaba sus propios deslizamientos
+naturales encima de una producción que saltaba de golpe.
+
+Las tres se miden ahora, y está detallado en
+[qué hace por dentro](CARACTERISTICAS.md). **No lo doy por cerrado**: la medida de
+velocidad tiene un suelo por debajo del cual no distingue, y la de la escala solo se puede
+aplicar en producciones ya muy corregidas — en canto natural no hay forma fiable de sacarla
+de un vocal aislado, así que ahí se dice que no se sabe en vez de adivinar. Sigue siendo la
+parte del programa que más veces he tocado, y cada intento se mide contra el original.
 
 **Y con un modelo bien entrenado, esa etapa sobra.** Un modelo aprende exactamente lo que
 se le dio: si se entrenó con la persona **cantando** y con el autotune ya puesto, esa

@@ -115,12 +115,17 @@ marcada, suenan a dos grabaciones distintas pegadas. Por eso el programa **mide 
 autotune lleva el vocal original** y se lo aplica al clon. Sin eso, el clon puede ser
 perfecto y aun así sonar fuera de sitio.
 
-> **Y aquí es donde el programa todavía no llega.** Esa medición mejora el resultado, pero
-> no iguala el tratamiento del original: en un tema tan corregido como este se nota que el
-> clon está menos afinado a máquina que la voz que sustituye. Es de lo primero que empecé y
-> de lo que sigo tocando en cada versión — cada intento se mide contra el original y la
-> mayoría no mejora lo suficiente como para entrar. Si escuchas la demostración con
-> atención, ahí está.
+> **Aquí es donde el programa no llegaba, y el vídeo es anterior al arreglo.** Si escuchas
+> la demostración con atención se nota que el clon está menos afinado a máquina que la voz
+> que sustituye. La causa resultó no ser la cantidad de corrección sino la velocidad: se
+> copiaba cuánto se corrige el original y no **cómo de rápido** entra esa corrección, así
+> que el clon acababa igual de afinado pero deslizándose hasta cada nota mientras el disco
+> saltaba de golpe.
+>
+> Está arreglado en el registro de cambios, con las dos medidas que faltaban. **El vídeo
+> no se ha vuelto a grabar**, así que lo que se oye ahí es el comportamiento anterior; se
+> deja porque lo demás que demuestra sigue siendo válido, y porque cambiar la demostración
+> sin decirlo sería peor.
 
 **Y las dos voces que se ponen encima son modelos mal entrenados**, de los recuperados.
 Los peores de este proyecto se apagaban a **7 276 y 8 376 Hz** —sordos de fábrica— y salen
@@ -347,9 +352,32 @@ El clon tiende a suavizar los comienzos de frase. Se le devuelve el ataque del o
 para que las entradas no suenen desganadas.
 
 ### Detección de autotune
-Se mide **cuánta corrección de tono lleva el vocal original** para replicarla. Una canción
-con autotune marcado y un clon perfectamente natural encima suenan a dos producciones
-distintas pegadas.
+
+Se mide el tratamiento de tono del vocal original para replicarlo. Una canción con autotune
+marcado y un clon perfectamente natural encima suenan a dos producciones distintas pegadas.
+
+Y se miden **tres** cosas, no una, porque con una sola no bastaba:
+
+- **Cuánta** corrección lleva: a cuántos cents de la nota vive la voz.
+- **Cómo de rápido** entra: si el tono salta de golpe al empezar cada nota o se desliza
+  hasta ella. Es lo que de verdad hace que algo suene a máquina. Dos voces pueden acabar
+  igual de pegadas a la nota y sonar completamente distintas según cómo llegan.
+- **Hacia qué notas**: apuntar siempre al semitono más cercano de los doce parece lo neutro
+  y no lo es. Una nota sesenta cents alta se clava en la de arriba, que a menudo no está en
+  la canción — y eso no se oye como robótico, se oye como desafinado. Cuando la canción es
+  lo bastante clara como para saber sobre qué notas se mueve, la corrección apunta a ellas.
+
+> Este apartado es el que el manual llevaba tiempo señalando como el más flojo del
+> programa. Faltaba la segunda medida: se copiaba la profundidad de la corrección y se le
+> dejaban al clon sus propios deslizamientos, así que acababa igual de afinado encima de
+> una producción que saltaba de golpe. Sonaban a dos grabaciones por ese detalle.
+>
+> De las tres, la tercera es la que menos veces se puede aplicar. Sacar la escala de un
+> vocal aislado no es fiable en canto natural: sobre una canción real de dos minutos, las
+> cuatro notas más usadas se llevan el 65 % y el resto se reparte en trozos del 1 al 6 %
+> que igual son melodía e igual son errores del detector. Cuando no está claro, se dice
+> que no está claro y se corrige contra las doce notas. Donde sí funciona es en
+> producciones muy corregidas — que es justo donde esto importa.
 
 ### Dicción y consonantes
 Busca **dónde el clon no dice bien lo que dice el original** — consonantes que se comen,
