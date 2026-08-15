@@ -180,6 +180,25 @@ Es de las primeras cosas que empecé y de las que sigo tocando en cada versión.
 solución de una tarde: cada intento se mide contra el original y la mayoría no mejora lo
 suficiente como para entrar. Cuando quede a la altura, se dirá en el registro de cambios.
 
+**Y con un modelo bien entrenado, esa etapa sobra.** Un modelo aprende exactamente lo que
+se le dio: si se entrenó con la persona **cantando** y con el autotune ya puesto, esa
+corrección forma parte de la voz que produce — sale afinada a máquina sola, sin pedírselo.
+
+En ese caso, **deja el autotune de Vocal Enhance apagado**. Aplicarle corrección a una voz
+que ya viene corregida no la mejora: la afina dos veces, y eso sí se oye — metálica, con
+los saltos de nota marcados, ese sonido de exceso que delata el proceso.
+
+Y se puede, porque **Vocal Enhance no es todo o nada**. Cada parte lleva su propio
+interruptor —copiar la sala, copiar el color tonal, copiar el autotune— más un control de
+cuánto se copia en general. Puedes apagar solo el autotune y quedarte con lo demás, bajar
+la intensidad, o **apagar Vocal Enhance entero** y quedarte con la conversión limpia. Si tu
+modelo ya trae puesto lo que esa etapa iba a añadir, esa es la opción correcta.
+
+Dicho en corto: la corrección de tono existe para los modelos que **no** la traen. Si el
+tuyo la trae, el programa estorba menos cuanto menos toca. Y de paso, ahí está la razón por
+la que un modelo bien entrenado vale más que cualquier ajuste: no hay parámetro que
+sustituya a un modelo que aprendió a cantar.
+
 Por eso la prueba es gratis y sin límite de tiempo: no te pido que confíes en que funciona,
 te pido que lo compruebes en tu equipo antes de pagar. En
 [SOBRE-EL-PROYECTO.txt](SOBRE-EL-PROYECTO.txt) está el contexto completo.
