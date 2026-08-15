@@ -169,6 +169,17 @@ pruebas suficientes para darlo por bueno en todos los casos: la sincronía puede
 o un tramo puede quedar mal repartido. Si vas a comprar principalmente por esa función,
 tenlo en cuenta.
 
+**El autotune todavía no queda como en el original, y llevo desde el principio con eso.**
+El programa mide cuánta corrección de tono lleva la voz original y se la aplica al clon —
+sin eso, una voz clonada natural encima de una producción muy corregida suena a dos
+grabaciones distintas pegadas. Funciona, y mejora el resultado. Pero **no llega a igualar
+el tratamiento del original**: en canciones con mucho autotune se nota que el clon está
+menos corregido que la voz que sustituye.
+
+Es de las primeras cosas que empecé y de las que sigo tocando en cada versión. No hay una
+solución de una tarde: cada intento se mide contra el original y la mayoría no mejora lo
+suficiente como para entrar. Cuando quede a la altura, se dirá en el registro de cambios.
+
 Por eso la prueba es gratis y sin límite de tiempo: no te pido que confíes en que funciona,
 te pido que lo compruebes en tu equipo antes de pagar. En
 [SOBRE-EL-PROYECTO.txt](SOBRE-EL-PROYECTO.txt) está el contexto completo.

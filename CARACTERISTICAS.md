@@ -115,6 +115,13 @@ marcada, suenan a dos grabaciones distintas pegadas. Por eso el programa **mide 
 autotune lleva el vocal original** y se lo aplica al clon. Sin eso, el clon puede ser
 perfecto y aun así sonar fuera de sitio.
 
+> **Y aquí es donde el programa todavía no llega.** Esa medición mejora el resultado, pero
+> no iguala el tratamiento del original: en un tema tan corregido como este se nota que el
+> clon está menos afinado a máquina que la voz que sustituye. Es de lo primero que empecé y
+> de lo que sigo tocando en cada versión — cada intento se mide contra el original y la
+> mayoría no mejora lo suficiente como para entrar. Si escuchas la demostración con
+> atención, ahí está.
+
 **Y las dos voces que se ponen encima son modelos mal entrenados**, de los recuperados.
 Los peores de este proyecto se apagaban a **7 276 y 8 376 Hz** —sordos de fábrica— y salen
 de la cadena por encima de los **15 900 Hz**, con +43 dB recuperados en la banda del
