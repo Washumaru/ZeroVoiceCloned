@@ -111,6 +111,35 @@ Usa **RMVPE** como algoritmo de tono, que es el que mejor aguanta agudos y false
 revisa el **transporte**: si la canción está fuera del registro que el modelo vio al
 entrenarse, no puede cantarla por bien ajustado que esté todo lo demás.
 
+### Las eses y las tes salen blandas o con un chasquido metálico
+
+Enciende **Consonantes en una pasada aparte**, en Ajustes. Los valores que hacen que las
+vocales suenen a la persona clonada son los que estropean las consonantes, así que con una
+sola conversión hay que elegir. Con esto se convierte dos veces y se coge de cada pasada lo
+que hace mejor. Tarda el doble, así que déjalo para cuando la voz ya te guste y lo único
+que falle sean las consonantes.
+
+### La voz suena con las palabras borrosas y colas metálicas
+
+Si la canción original lleva mucha reverberación, comprueba que **Quitar la sala antes de
+clonar** esté encendido en Ajustes. El motor sabe imitar una voz, no una habitación: con la
+sala pegada intenta convertir las dos cosas a la vez. La sala se le devuelve después, así
+que el resultado no queda más seco.
+
+### Un cantante entra más flojo o más fuerte que el que sale
+
+Ya se corrige solo: los dos lados de cada relevo se igualan en el instante del cambio. Si
+aún lo notas, sube el **Suavizado del cambio de cantante** en Ajustes — ese mando ya no fija
+la duración del cruce, escala el rango que el programa elige para cada relevo.
+
+### La canción exportada suena más floja que el original
+
+No debería: el programa mide el volumen real de tu canción y deja la mezcla ahí. Si se queda
+por debajo es a propósito, y es el caso en que la mezcla tiene los picos muy por encima de
+su volumen medio — subirla más obligaría al limitador a comerse los golpes, y saldría al
+volumen pedido pero aplastada. Se prefiere una canción un poco más floja, que se arregla con
+el mando del volumen.
+
 ### El estribillo con coros sale como un balbuceo
 
 Comprueba que la separación de voz principal y coros esté activa. El coro debe pasar **sin

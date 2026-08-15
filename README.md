@@ -88,14 +88,16 @@ en manos de quien ya sabe mezclar.
 | **Reconoce** | quién canta en cada tramo, y reparte las voces por separado |
 | **Clona** | sustituye cada voz por el modelo que elijas, con cuatro algoritmos de tono |
 | **Ajusta** | afinación, dicción, formantes, espacio, respiraciones y mezcla |
+| **Masteriza** | deja la canción al volumen del disco original y sin recortes en el MP3 |
 | **Exporta** | audio con formato y etiquetas, o el vídeo con la voz nueva |
 | **Dobla** | vídeo con avisos de entrada — *función en pruebas, lee más abajo* |
 
 Todo local. Sin cuenta, sin suscripción, sin conexión obligatoria y sin límite mensual.
 
 **[→ La lista larga: qué hace por dentro y por qué](CARACTERISTICAS.md)** — el injerto de
-banda alta, la separación de coros, los duetos dentro del mismo verso, la reconstrucción
-del índice perdido y el resto de sistemas, con las mediciones que los motivaron.
+banda alta, la separación de coros, los duetos dentro del mismo verso, la reparación del
+contorno de tono, los relevos entre cantantes, el máster y la reconstrucción del índice
+perdido, con las mediciones que los motivaron.
 
 ---
 

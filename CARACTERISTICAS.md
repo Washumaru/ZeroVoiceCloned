@@ -143,10 +143,35 @@ el motor arranca en frío, o —lo peor— el cantante original asomando por deb
 décima de segundo. Cada uno de esos fallos hubo que encontrarlo escuchando, entender por
 qué pasaba y taparlo por separado.
 
-Tres controles que existen por eso mismo:
+Un relevo son tres decisiones distintas, y durante mucho tiempo solo estaba resuelta la
+tercera:
 
-- **Fundido de relevo** (30 ms por defecto): el cruce entre un cantante y el siguiente.
-  Sin él se oye el corte.
+- **Dónde se corta.** Cuando dos cantantes se solapan en la línea de tiempo hay que partir
+  por algún sitio, y se partía por el punto medio exacto. Ese instante cae donde cae, y muy
+  a menudo cae dentro de una palabra: la empieza uno y la acaba otro. **No hay fundido que
+  arregle eso.** Ahora el corte se mueve al punto de menos energía que haya a 150 ms a la
+  redonda —donde el cantante ya está soltando la nota—, sin salirse nunca del tramo
+  solapado.
+
+- **Cuánto dura el cruce.** Era un número fijo para toda la canción, y el mismo número no
+  puede valer para los dos casos: en una pausa se queda corto y suena a tijeretazo, y a
+  mitad de frase se pasa y se oyen literalmente las dos voces a la vez. Ahora cada relevo
+  mide lo que suena en su costura y elige: largo en el silencio, corto con la voz sonando.
+
+- **A qué nivel se encuentran.** El cruce reparte bien la potencia —eso ya estaba— pero
+  cruza dos grabaciones distintas, y dos clones del mismo verso no salen al mismo volumen.
+  Medido sobre una canción real, el peor relevo tenía un escalón de **6 dB**. Ahora los dos
+  lados se igualan en el instante del cambio, repartiendo la corrección entre ambos, y se
+  desvanece medio segundo después: la estrofa tiene que seguir siendo más floja que el
+  estribillo, así que esto cierra un escalón, no nivela dos tramos.
+
+Todo se decide contra el **vocal original**, no contra el clon: el original es quien sabe
+dónde acaba una palabra.
+
+Y dos controles más que existen por lo mismo:
+
+- **Fundido de relevo** (30 ms por defecto): ya no fija la duración, pero **escala el rango**
+  que se elige solo. Con 30 va de 18 a 140 ms; con el doble, de 36 a 280.
 - **Contexto de arranque** (0,5 s): audio real que se le da a RVC **antes** de cada bloque
   para que el detector de tono llegue ya enganchado. Un bloque que empieza en frío empieza
   desafinado.
@@ -163,6 +188,51 @@ Tres controles que existen por eso mismo:
 **RMVPE** (el mejor: cero desafinación en agudos y falsetes), **Crepe** (excelente en canto
 muy limpio, más pesado), **Harvest** (precisión media, el tradicional de RVC) y **PM**
 (ultrarrápido).
+
+### El contorno de tono, reparado antes de clonar
+
+El motor decide qué nota canta el clon a partir del tono que detecta en el vocal original.
+Cuando el detector se equivoca, el modelo canta la nota equivocada — y se equivoca siempre
+de las mismas dos maneras:
+
+- **Salta una octava** durante unas décimas de segundo, confundiendo el primer armónico con
+  el fundamental. Es lo que se oye como un gallo o un tartamudeo metálico.
+- **Se queda mudo a mitad de nota**, sobre todo arriba y en las voces con mucho aire. El
+  motor lee ese cero como «aquí no hay voz» y deja de cantar. Es la **causa de raíz** de que
+  la voz clonada se apague en los agudos mientras el instrumental sigue.
+
+Los dos defectos se tapaban antes por detrás, sobre el audio ya generado: se le devolvía el
+volumen perdido a una nota que el modelo ya había cantado mal. Ahora se arreglan **antes de
+que el modelo la cante**. Sobre 25 segundos de una canción real: 5 instantes devueltos a su
+octava y 47 recuperados de quedarse mudos.
+
+Lo delicado es no romper a quien sí salta la octava a propósito. La corrección **se propone
+mirando el entorno y se confirma mirando el espectro**: se mide la energía armónica real de
+las dos hipótesis en ese instante del audio y gana la que de verdad está sonando. Un
+cantante que sube la octava en el estribillo sale intacto.
+
+De propina la clonación va **más rápida**, porque el motor ya no tiene que buscar el tono
+por su cuenta.
+
+### Consonantes en una pasada aparte
+
+Dos ajustes del motor tiran en direcciones opuestas. El que decide cuánto se respeta la
+parte sin tono —las eses, las tes, las pes— y el que decide cuánto manda el índice de
+timbre: los valores que dejan las **vocales** sonando a la persona clonada son los que dejan
+las **consonantes** blandas o metálicas, y al revés. Con una sola conversión hay que elegir
+un punto intermedio que no es bueno para ninguna de las dos.
+
+Activándolo, cada tramo se convierte **dos veces** —una afinada para vocales, otra para
+consonantes— y se coge de cada render la parte en la que es mejor, cruzando por un detector
+de fricción medido sobre el original.
+
+Se pueden mezclar sin que aparezca filtrado en peine porque no son dos señales distintas:
+son la misma conversión con dos ajustes, sobre el mismo audio y el mismo contorno de tono,
+así que salen alineadas muestra a muestra. Es justo lo contrario del caso del dueto, donde
+las dos voces **sí** necesitan un desfase.
+
+Cuesta literalmente el doble de tiempo, y por eso viene apagado: es para cuando la voz ya
+gusta y lo único que falla son las consonantes.
 
 ### Transporte automático al registro del modelo
 Un modelo entrenado con una voz grave no puede cantar un tema agudo por mucho que se le
@@ -262,8 +332,15 @@ está repartida la energía. Sin esto, dos voces clonadas de canciones distintas
 iguales entre sí y distintas a su canción.
 
 ### Desreverberación previa
-Si el vocal original viene con mucha sala, esa sala entra en la clonación y se acumula. Se
-quita antes de clonar, y después se devuelve la cantidad medida.
+El motor sabe imitar una voz, no una habitación. Con la reverb de la grabación pegada
+intenta convertir las dos cosas a la vez, y de ahí salen las colas metálicas y las palabras
+borrosas; HuBERT tiene el mismo problema un paso antes, porque lee la cola de la sala como
+si fuera parte del sonido de la vocal.
+
+Así que se le da la voz **seca para que la analice**, y la sala se le devuelve después,
+medida del original. Lo que se seca es solo lo que el motor analiza, nunca lo que se mezcla:
+el resultado no queda más seco, queda más limpio. Sobre una toma que ya venía seca no se
+toca nada.
 
 ### Ataque de las frases
 El clon tiende a suavizar los comienzos de frase. Se le devuelve el ataque del original
@@ -289,6 +366,54 @@ intérpretes, uno puede quedar tapado si se aplica una sola ganancia a todo.
 
 ---
 
+## El máster: cómo se cierra la canción
+
+### La voz al centro y la sala abierta
+
+La voz salía idéntica en los dos altavoces contra un instrumental que sí es estéreo, y eso
+se oye como una voz pegada al frente, **delante** de la canción en vez de dentro de ella.
+
+Ahora la voz sigue en el centro —que es donde va una voz principal en cualquier disco— y lo
+que se abre es la reverberación que la lleva, con dos cadenas de all-pass distintas, una por
+canal. Lo que **no** se hace es tomar el canal lateral del vocal original, que sería lo más
+directo: ahí dentro está la voz del cantante original, y meterla en los lados sería colar a
+la persona equivocada en la mezcla.
+
+### Sonoridad medida, no pico
+
+Lo único que protegía la mezcla final era bajarla si algún pico se pasaba. Eso deja dos
+agujeros:
+
+- **El pico no dice nada de lo fuerte que suena algo.** La versión clonada salía más floja
+  —o más fuerte— que la canción de la que venía, y había que tocar el volumen al cambiar de
+  una a otra.
+- **El pico de muestra no es el pico de verdad.** Entre dos muestras la señal reconstruida
+  sube más alto que cualquiera de las dos. Un archivo que se queda en 0,96 puede recortar al
+  reproducirse: es distorsión que **no está en el WAV y sí en el MP3** que uno descarga.
+
+Ahora se mide la sonoridad integrada según **ITU-R BS.1770-4** —filtro K, bloques de 400 ms,
+doble puerta— y el pico real con sobremuestreo x4, y la mezcla se lleva al volumen de la
+canción original con un limitador con anticipación que baja **solo alrededor de los picos**
+en vez de bajar la canción entera por culpa de un golpe de caja. Sobre una mezcla real: de
+−21,3 a −14,8 LUFS y de −1,69 a −1,00 dBTP.
+
+El objetivo es **la propia canción del usuario**, no el número que pide un servicio de
+streaming: igualar todo a −14 LUFS cambiaría el carácter de un disco masterizado a −8 a
+propósito. Y si llegar hasta ahí obligara al limitador a trabajar más de 6 dB, se sube
+menos y se acepta quedarse por debajo — una canción algo más floja se arregla con el mando
+del volumen, y una aplastada no se arregla con nada.
+
+### El balance con el instrumental, medido sobre el disco y no sobre los stems
+
+El programa copia la proporción entre voz y fondo que tenía el original. Pero la medía sobre
+las dos pistas ya separadas, y esas se guardan igualadas de volumen **cada una por su lado**
+—que es lo que hace falta para escucharlas sueltas en el editor y justo lo que destruye la
+proporción que se quería copiar—. En una canción con la voz picando a 0,20 y el fondo a
+0,90, que es lo normal, la voz acababa cuatro veces por encima de donde el disco la tenía.
+Ahora se apunta cuánto se subió cada pista y la cuenta se deshace antes de medir.
+
+---
+
 ## Estudio, mezcla y edición
 
 - **Editor multipista**: silenciar tramos, ajustar las regiones donde se aplica cada efecto
@@ -299,7 +424,10 @@ intérpretes, uno puede quedar tapado si se aplica una sola ganancia a todo.
   minutos para descubrir que el modelo elegido no era el bueno.
 - **Metadatos**: carátula, título y qué modelos se usaron, escritos en el archivo
   exportado.
-- **Exportación** en MP3, M4A, FLAC y WAV.
+- **Exportación** en MP3, M4A, FLAC y WAV. Lo que se guarda va en **24 bits** de punta a
+  punta: la mezcla de la sesión se relee para aplicarle los efectos del Estudio y se vuelve
+  a guardar, así que en 16 bits cada vuelta añadía su propio ruido de redondeo. El FLAC
+  —el formato «sin pérdida»— también sale en 24.
 
 ---
 

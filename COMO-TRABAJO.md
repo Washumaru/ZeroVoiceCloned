@@ -79,10 +79,14 @@ otra parte.
 |---|---:|
 | Espacio y reverberación | 37 |
 | Doblaje e intervenciones | 33 |
+| Relevos entre cantantes | 21 |
 | Niveles de voz e instrumental | 21 |
 | Detección de intérpretes | 19 |
+| Volumen del máster y pico real | 19 |
+| Cadena del Estudio y balance de la mezcla | 18 |
 | Edición de tramos y silencios | 17 |
 | Datos de la pista | 17 |
+| Reparación del tono antes de clonar | 16 |
 | Plan de efectos | 16 |
 | Color tonal | 16 |
 | Mezcla y máster | 15 |
@@ -91,6 +95,7 @@ otra parte.
 | Afinación | 10 |
 | Dicción y consonantes | 10 |
 | Importación por enlace | 10 |
+| Consonantes en pasada aparte | 9 |
 | Huella del equipo y licencia | 9 |
 | Quitar sala del original | 9 |
 | Reparación del clon (agudos y caídas) | 9 |
@@ -101,9 +106,9 @@ otra parte.
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
 | Interfaz: progreso, tiempos, historial, exportación, avisos previos | 76 |
-| **Total** | **385** |
+| **Total** | **468** |
 
-<sub>309 sobre el motor de audio en 23 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
+<sub>392 sobre el motor de audio en 28 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
 
 <!-- CUENTA-PRUEBAS:FIN -->
 
