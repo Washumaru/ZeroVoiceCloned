@@ -65,8 +65,8 @@ el problema.
 
 ## Las pruebas automáticas
 
-**385 comprobaciones** que se ejecutan antes de dar por bueno un cambio: 309 sobre el motor
-de audio y 76 sobre la interfaz.
+**848 comprobaciones** que se ejecutan antes de dar por bueno un cambio: 745 sobre el motor
+de audio y 103 sobre la interfaz.
 
 No están repartidas por igual. **La cobertura sigue a las cicatrices**: las zonas con más
 pruebas son las que más veces se rompieron, no las más grandes. El espacio y la
@@ -78,13 +78,27 @@ otra parte.
 | Área | Comprobaciones |
 |---|---:|
 | Espacio y reverberación | 37 |
+| test_alineacion | 34 |
 | Doblaje e intervenciones | 33 |
+| test_pronunciacion | 33 |
+| test_reparto | 31 |
+| Relevos entre cantantes | 31 |
+| test_duo | 27 |
 | Velocidad y escala de la afinación | 24 |
-| Relevos entre cantantes | 21 |
+| Consonantes en pasada aparte | 22 |
+| test_indice_fonetico | 21 |
+| test_separacion_cache | 21 |
+| test_stems_export | 21 |
 | Niveles de voz e instrumental | 21 |
+| test_master_referencia | 20 |
+| test_proyecto | 20 |
+| test_cantantes | 19 |
 | Detección de intérpretes | 19 |
 | Volumen del máster y pico real | 19 |
+| test_recetas | 19 |
 | Cadena del Estudio y balance de la mezcla | 18 |
+| test_respiracion | 18 |
+| test_registro_tramos | 17 |
 | Edición de tramos y silencios | 17 |
 | Datos de la pista | 17 |
 | Reparación del tono antes de clonar | 16 |
@@ -96,7 +110,6 @@ otra parte.
 | Precisión de los efectos | 10 |
 | Dicción y consonantes | 10 |
 | Importación por enlace | 10 |
-| Consonantes en pasada aparte | 9 |
 | Huella del equipo y licencia | 9 |
 | Quitar sala del original | 9 |
 | Reparación del clon (agudos y caídas) | 9 |
@@ -106,10 +119,11 @@ otra parte.
 | Aislamiento de las pruebas | 5 |
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
-| Interfaz: progreso, tiempos, historial, exportación, avisos previos | 76 |
-| **Total** | **493** |
+| test_cover_gaps_conserva_duo | 4 |
+| Interfaz: progreso, tiempos, historial, exportación, avisos previos | 103 |
+| **Total** | **848** |
 
-<sub>417 sobre el motor de audio en 29 grupos y 76 sobre la interfaz en 6. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
+<sub>745 sobre el motor de audio en 43 grupos y 103 sobre la interfaz en 9. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
 
 <!-- CUENTA-PRUEBAS:FIN -->
 

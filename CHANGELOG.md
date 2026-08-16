@@ -225,6 +225,22 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   casi nada y en FLAC ocupa cerca de la mitad. Y si el proyecto trae las pistas separadas,
   al abrirlo no hay que volver a separar; si trae la letra, no hay que volver a transcribir.
 
+- **Decirle al programa que dos cantantes detectados son la misma persona.** La detección
+  agrupa por timbre y se equivoca casi siempre en el mismo sentido: **parte a una persona en
+  varias**. Una voz que grita en el estribillo y susurra en la estrofa tiene dos timbres
+  bastante distintos, y acaban en montones separados. Es el error cómodo de cometer: juntar
+  a dos personas suena mucho peor que separar a una.
+
+  Se podía sortear asignando el mismo modelo a todos esos montones, pero deja tarjetas de
+  sobra que mantener, tonos que igualar uno a uno y una costura en cada relevo entre dos
+  trozos de la misma voz. Ahora se marcan los que sean el mismo y se unen en uno: los tramos se
+  reetiquetan, se renumeran sin dejar huecos y los que quedan pegados se funden. El modelo
+  que ya tenían asignado viaja con ellos.
+
+  Y no hay que volver a analizar la canción — ni para esto ni para probar otro número de
+  voces. Las huellas del análisis se guardan con la sesión, así que reagrupar cuesta
+  segundos en vez de repetir los minutos del análisis completo.
+
 - **La letra y sus tiempos ya vienen dentro: nada que instalar.** El programa sabía sacar
   la letra de una canción con el momento exacto de cada palabra, pero eso necesitaba un
   motor de transcripción que no viajaba en el paquete. Es decir: estaba escrito y apagado.

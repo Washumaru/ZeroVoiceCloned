@@ -78,6 +78,22 @@ por debajo del clon** — el efecto de voz doblada que este sistema existe para 
 Las dos capas suman exactamente la original, muestra por muestra. El coro se devuelve **sin
 tocar**: no se clona, se conserva.
 
+### Cuando parte a una persona en dos
+
+La detección se equivoca casi siempre en el mismo sentido: **parte a un cantante en
+varios**. Una voz que grita en el estribillo y susurra en la estrofa tiene dos timbres
+bastante distintos, y el agrupador los manda a montones separados. Es el fallo cómodo — es
+mucho peor juntar a dos personas que separar a una — pero deja tarjetas de sobra que
+mantener y una costura en cada relevo entre dos trozos de la misma voz.
+
+Se marcan los que sean el mismo y se unen en uno. Es exacto: lo dice quien escucha, no hay
+nada que estimar. Los tramos se reetiquetan, se renumeran sin dejar huecos y los que quedan
+pegados se funden; el modelo que ya tenían asignado viaja con ellos.
+
+Y no hace falta volver a analizar la canción, ni para esto ni para probar otro número de
+voces: las huellas del análisis quedan guardadas con la sesión, así que reagrupar cuesta
+segundos.
+
 ### Duetos dentro del mismo verso
 
 Cuando dos personas cantan **a la vez**, no se elige una: se marca ese tramo como dueto y se
