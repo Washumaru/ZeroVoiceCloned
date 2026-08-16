@@ -239,6 +239,39 @@ las dos voces **sí** necesitan un desfase.
 Cuesta literalmente el doble de tiempo, y por eso viene apagado: es para cuando la voz ya
 gusta y lo único que falla son las consonantes.
 
+### La letra, y por qué cambia todo lo demás
+
+Todo lo anterior trabaja sobre **energía y tono**: dónde suena fuerte y qué nota es. Nada
+de eso sabe qué palabra se está cantando, y varias etapas fallaban justo por ahí.
+
+El programa transcribe la voz una vez por canción y apunta cuándo suena cada palabra. Con
+ese dato:
+
+- **Los relevos entre cantantes caen en frontera de palabra.** Antes se buscaba el punto
+  más callado alrededor del cambio, y en una nota larga sostenida el punto más callado está
+  *dentro* de la palabra: el corte quedaba en el sitio más silencioso y aun así partía la
+  sílaba.
+- **La pasada de consonantes deja de recorrer la canción entera.** Sabe dónde están: sobre
+  una canción real medimos que sólo el **27 %** del tiempo cantado es consonante.
+- **El índice se aparta sólo donde borraba la articulación**, en vez de por toda la canción.
+- **Sale la letra sincronizada** en `.lrc` para karaoke y `.srt` para el vídeo.
+
+Tarda unos 48 segundos por canción, se hace una sola vez y queda guardada con la sesión.
+Corre en su propio entorno dentro del programa, sin conexión y sin instalar nada.
+
+### Una «s» que suena a la persona, no a una vocal
+
+El índice de un modelo es un banco de retazos de esa voz, y en cualquier grabación cantada
+las **vocales** ocupan casi todo el tiempo. Así que al buscar el retazo más parecido a una
+consonante, lo que encontraba eran vocales: no es que el índice estorbara en las
+consonantes, es que ahí no tenía consonantes que ofrecer. De ahí que un clon «masticara» la
+letra o se comiera las eses.
+
+Al construir el índice se guarda ahora **de qué tipo de sonido salió cada retazo**, y una
+consonante se queda sólo con los que también lo son. Sobre las vocales no se toca nada, y si
+un modelo no tiene consonantes suficientes se busca como siempre en vez de devolver algo
+lejano por llevar la etiqueta buena.
+
 ### Transporte automático al registro del modelo
 Un modelo entrenado con una voz grave no puede cantar un tema agudo por mucho que se le
 pida: no vio esas notas al entrenarse. El programa mide el registro real del modelo y el de

@@ -13,6 +13,73 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
 
 ### Corregido
 
+- **Dos interruptores de Ajustes no hacían absolutamente nada.** «Protección de
+  respiraciones» y «Corrección de formantes» se podían encender y apagar, se guardaban y
+  hasta salían en las recetas — y **nunca llegaban al motor**. Ninguno de los dos existía
+  más allá de la casilla. Se auditaron los ochenta mandos del programa uno por uno para
+  descartar que hubiera más: eran exactamente esos dos.
+
+  Cada uno se resolvió como tocaba, que no era lo mismo:
+
+  **La protección de respiraciones existe ahora de verdad.** Entre frase y frase el
+  cantante toma aire, y ese sonido no tiene tono: el motor no encuentra nada parecido en el
+  modelo y rellena el hueco con gruñidos graves y soplidos metálicos. Ahora se detectan
+  esas respiraciones en la voz original —sin tono, poca energía y ruido de banda ancha, las
+  tres cosas a la vez— y se devuelven al clon con un cruce corto en los bordes. No mete al
+  cantante equivocado en la mezcla: una respiración es aire pasando por una garganta
+  abierta, y no lleva ni el tono ni los formantes que identifican a una persona.
+
+  **La corrección de formantes se quitó en vez de implementarse.** Copiar los formantes del
+  cantante de origen sobre el clon ya se había medido en este proyecto: acercaba el clon un
+  40 % al original y lo dejaba nasal y tapado — el híbrido sin carácter. Es una regla escrita
+  del proyecto, así que hacer funcionar ese interruptor habría sido empeorar el programa a
+  petición de un botón. El color se sigue ajustando donde corresponde, al 15 % y por
+  cantante.
+
+- **La voz doble no sonaba nunca.** Se marcaba el tramo, se elegía la segunda voz, la
+  pantalla lo daba por puesto — y en el audio final sólo estaba la voz principal.
+
+  La causa no estaba en el dúo sino en una etapa anterior. Justo antes de renderizar hay un
+  paso que reparte entre los cantantes vecinos los trocitos de voz que la detección dejó sin
+  dueño. Ese paso **reconstruía cada tramo quedándose sólo con el cantante y sus tiempos**, y
+  tiraba todo lo demás por el camino. Entre ese «todo lo demás» estaba precisamente la marca
+  del dúo. Cuando después se preguntaba qué tramos llevan segunda voz, la respuesta era
+  siempre «ninguno».
+
+  Se llevaba por delante también los cortes hechos a mano, y podía fundir dos bloques con
+  segundas voces distintas en uno solo — extendiendo un dúo a un tramo donde nadie lo puso.
+  Ahora los tramos conservan lo que el usuario marcó, y la regla de cuándo se pueden fundir
+  dos bloques es la misma en la línea de tiempo y en el motor, que es lo que hace que el
+  resultado se parezca a lo que se ve en pantalla.
+
+- **Ya no queda ninguna descarga pendiente: el separador de 6 pistas viaja dentro.** Era la
+  única pieza que el programa se bajaba la primera vez que se usaba. Se había dado por hecho
+  que ese modelo se guardaba en un almacén aparte con sus propias reglas, y que meterlo
+  obligaba a llevar dentro un segundo sistema entero. Resultó que no: se comporta igual que
+  los otros dos. Lo único cierto es que su archivo nunca se había llegado a descargar en la
+  máquina donde se arma el paquete, así que no había nada que copiar. Ahora se empaqueta con
+  los demás, y la comprobación previa a publicar cuenta seis archivos en vez de cinco, así
+  que no puede volver a salir un paquete sin él.
+
+- **La voz original se colaba por debajo del clon en cada borde de tramo.** Se oía como si
+  el cantante de verdad hubiera quedado de fondo, o como un eco con la reverb apagada.
+
+  Lo que no reclama ningún cantante conserva la voz original, para que no desaparezca audio
+  de la mezcla — eso está bien. El fallo estaba en el borde: cuando un tramo termina y no
+  entra otro cantante, el programa bajaba el clon con una rampa larga mientras subía al
+  cantante original en su lugar, así que durante toda la rampa **sonaban los dos**. Medido:
+  el original llegaba a seis decibelios por debajo del clon.
+
+  Y la rampa la escalaba el mando de suavizado, que es para el relevo *entre cantantes*:
+  con el mando en 300 ms eran 330 milisegundos de las dos voces juntas en cada borde. En
+  una canción con muchos tramos, eso es la voz original apareciendo decenas de veces por
+  minuto.
+
+  Ahora esa rampa dura 24 ms fijos y no la mueve ningún mando: lo justo para que la caída
+  no chasquee, y demasiado corta para que el oído separe dos voces. El relevo entre dos
+  cantantes no cambia nada — ahí el cruce largo sí tiene sentido y sigue conservando la
+  potencia exacta.
+
 - **La opción «consonantes en pasada aparte» iba sin proteger ninguna consonante.** El
   mando de protección del motor va al revés de lo que sugiere su nombre: es la fracción de
   timbre del modelo que se deja pasar donde no hay tono, así que **bajarlo protege más**, y
@@ -157,6 +224,91 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   El audio va dentro en FLAC, sin perder una muestra: comprimir un WAV con ZIP no ahorra
   casi nada y en FLAC ocupa cerca de la mitad. Y si el proyecto trae las pistas separadas,
   al abrirlo no hay que volver a separar; si trae la letra, no hay que volver a transcribir.
+
+- **La letra y sus tiempos ya vienen dentro: nada que instalar.** El programa sabía sacar
+  la letra de una canción con el momento exacto de cada palabra, pero eso necesitaba un
+  motor de transcripción que no viajaba en el paquete. Es decir: estaba escrito y apagado.
+  Ahora va dentro, y con él se encienden cuatro cosas que dependían de saber qué se canta:
+
+  - Los relevos entre cantantes se colocan **en frontera de palabra**, no en el punto más
+    callado — que en una nota sostenida cae a mitad de sílaba.
+  - La pasada de consonantes deja de recorrer la canción entera. Medido sobre una canción
+    real: sólo el **27 %** del tiempo cantado es consonante, así que se ahorra el resto.
+  - El índice se aparta donde borraba la articulación, y sólo ahí.
+  - Sale la **letra sincronizada** en `.lrc` para karaoke y `.srt` para el vídeo.
+
+  Tarda unos 48 segundos por canción y se hace una sola vez: queda guardado con la sesión.
+  Como todo lo demás, funciona sin conexión.
+
+- **Una «s» del clon recupera las «eses» del modelo, y no sus vocales.** Es la otra mitad
+  del arreglo de pronunciación. El índice de un modelo está dominado por vocales —en
+  cualquier grabación cantada ocupan casi todo el tiempo con voz—, así que al buscar el
+  sonido más parecido a una consonante encontraba vocales. No es que el índice estorbe en
+  las consonantes: es que ahí no tenía consonantes que ofrecer.
+
+  Ahora, al construir el índice de una voz, se guarda junto a él **de qué tipo de sonido
+  salió cada retazo**. Con esa etiqueta, cuando lo que suena es una consonante la búsqueda
+  se queda sólo con los retazos que también lo son. La consonante deja de tener que elegir
+  entre sonar a la persona clonada o entenderse.
+
+  Sobre las vocales no se toca nada — ahí ya funcionaba — y si un modelo no tiene
+  consonantes suficientes en su banco se busca como siempre, en vez de devolver algo lejano
+  sólo porque lleva la etiqueta buena. Las etiquetas se escriben al crear el índice: los
+  modelos que ya lo tienen hecho siguen funcionando igual, y para aprovechar esto hay que
+  rehacérselo desde Ajustes.
+
+- **Una canción ya separada no se vuelve a separar.** Era lo más lento del programa después
+  de convertir, y se repetía todo el rato sobre el mismo audio: al volver a cargar el tema
+  para probar otro modelo de voz, al cerrar y reabrir la sesión, al abrir un proyecto que
+  traía la canción pero no las pistas. Ahora las separaciones se guardan y se reutilizan, y
+  esas veces son instantáneas.
+
+  Se identifica por **el contenido del audio**, no por el nombre del archivo: la misma
+  canción bajada dos veces puede llamarse distinto, y dos temas distintos pueden llamarse
+  igual. Y también por los ajustes, porque cada modelo de separación da pistas distintas —
+  reutilizar las de uno para otro sería devolver algo que no pediste, y encima sin decirlo.
+
+  Antes de usar lo guardado se comprueba que esté completo y que dure lo mismo que la
+  canción de entrada. Si algo no cuadra, separa como si no hubiera caché: que el programa
+  tarde es un fastidio, que devuelva la canción de otro es un fallo. Se guardan las veinte
+  últimas, y en Ajustes se ve cuánto ocupan y se pueden tirar.
+
+- **El dúo suena a dos personas y no a una voz gruesa.** La voz doble convierte el mismo
+  pasaje con dos modelos y los suma separados por unos milisegundos. Ese desfase existía por
+  un motivo correcto — sin él las dos señales, casi idénticas, se cancelan entre sí y el
+  resultado sale hueco y metálico — pero era **un número fijo**, y ahí estaba el fallo: un
+  retardo constante no quita esa cancelación, la deja clavada siempre en las mismas
+  frecuencias. El oído no oye eso como dos personas; lo oye como un filtro, es decir, como
+  el timbre de una sola voz rara. Es el sonido de un chorus barato.
+
+  Dos tomas de verdad no se separan por un número constante: **derivan**. Ahora el desfase
+  se pasea despacio, a lo largo de la frase y no dentro de la sílaba. Con eso pasan dos
+  cosas a la vez, y las dos hacían falta: la cancelación se mueve y deja de leerse como
+  timbre, y la segunda voz queda unos cents por encima o por debajo, cambiando poco a poco
+  — que es la pista que el oído usa antes que ninguna otra para decidir que hay dos
+  personas. Medido: entre 7 y 13 cents de media, con picos de 17 a 24. Es lo que separa a
+  dos tomas de la misma persona.
+
+  Lo que **no** se toca es la entonación: las dos conversiones salen del mismo audio, así
+  que siguen la misma melodía. Eso es lo que las mantiene al unísono en vez de
+  descoordinadas. El mando del desfase sigue sirviendo: ahora elige dónde se pasea la
+  segunda voz. Y la deriva es siempre la misma para el mismo tramo, así que dos renders de
+  la misma canción suenan idénticos — un efecto que cambiara en cada render no se podría
+  ajustar.
+
+- **El reparto de cantantes sale limpio de fábrica.** La detección agrupa por timbre y
+  acierta el «quién» mucho mejor que el «dónde»: sus fronteras caen donde cambia el
+  parecido acústico, que no es donde acaba una frase. De ahí salían dos estropicios que
+  había que arreglar a mano tramo por tramo — trozos de dos décimas adjudicados a otro
+  cantante en mitad de un verso, que se oyen como un parpadeo de voz, y relevos colocados a
+  mitad de palabra.
+
+  Ahora el programa los corrige solo: absorbe el tramo imposible y lleva cada relevo a la
+  pausa que tenga más cerca. **Y no se pasa de listo**: un tramo corto sólo desaparece
+  cuando está rodeado por el mismo cantante a los dos lados, que es el caso que no ocurre
+  al cantar. Si está entre dos cantantes distintos, o al principio o al final de la
+  canción, se respeta — podría ser un ad-lib de verdad, y borrarlo sería peor. Todo sigue
+  siendo editable en la línea de tiempo; la idea es que casi nunca haga falta.
 
 - **Bajarse las pistas por separado.** Voz clonada, instrumental, voz original y voz
   principal sin coros, cada una en su archivo, para seguir la mezcla en otro programa. Los
@@ -463,8 +615,8 @@ funciona sin conexión desde el primer momento.
 - **La aceleración por tarjeta gráfica va por DirectML**, que sirve con cualquier tarjeta
   compatible con DirectX 12: AMD, Intel y también NVIDIA. La vía propia de NVIDIA (CUDA)
   no viaja dentro de esta versión.
-- El modelo de separación de 6 pistas (`htdemucs_6s`) es el único que no viene incluido:
-  se descarga la primera vez que se elige.
+- Los tres modelos de separación viajan dentro, incluido el de 6 pistas: no hay ninguna
+  descarga pendiente y el programa funciona sin conexión desde el primer momento.
 - El ejecutable no tiene firma digital comprada, así que Windows mostrará el aviso
   «Windows protegió su PC» la primera vez.
 

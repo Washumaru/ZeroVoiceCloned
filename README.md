@@ -87,17 +87,20 @@ en manos de quien ya sabe mezclar.
 | **Separa** | voz e instrumental de cualquier canción |
 | **Reconoce** | quién canta en cada tramo, y reparte las voces por separado |
 | **Clona** | sustituye cada voz por el modelo que elijas, con cuatro algoritmos de tono |
-| **Ajusta** | afinación, dicción, formantes, espacio, respiraciones y mezcla |
-| **Masteriza** | deja la canción al volumen del disco original y sin recortes en el MP3 |
-| **Exporta** | audio con formato y etiquetas, o el vídeo con la voz nueva |
+| **Ajusta** | afinación, dicción, espacio, respiraciones y mezcla |
+| **Transcribe** | la letra con sus tiempos, y con ella coloca los relevos y las consonantes |
+| **Masteriza** | al volumen del disco original, o al de la plataforma que elijas |
+| **Exporta** | audio con etiquetas, las pistas por separado, el vídeo, o la letra en `.lrc` |
+| **Guarda** | el proyecto entero en un archivo, y los mandos como recetas reutilizables |
 | **Dobla** | vídeo con avisos de entrada — *función en pruebas, lee más abajo* |
 
 Todo local. Sin cuenta, sin suscripción, sin conexión obligatoria y sin límite mensual.
 
 **[→ La lista larga: qué hace por dentro y por qué](CARACTERISTICAS.md)** — el injerto de
 banda alta, la separación de coros, los duetos dentro del mismo verso, la reparación del
-contorno de tono, los relevos entre cantantes, el máster y la reconstrucción del índice
-perdido, con las mediciones que los motivaron.
+contorno de tono, los relevos entre cantantes, la letra con sus tiempos, el índice que
+distingue una ese de una vocal, el máster y la reconstrucción del índice perdido, con las
+mediciones que los motivaron.
 
 ---
 
