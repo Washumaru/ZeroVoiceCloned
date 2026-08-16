@@ -78,27 +78,27 @@ otra parte.
 | Área | Comprobaciones |
 |---|---:|
 | Espacio y reverberación | 37 |
-| test_alineacion | 34 |
+| Letra y tiempos por palabra | 34 |
 | Doblaje e intervenciones | 33 |
-| test_pronunciacion | 33 |
-| test_reparto | 31 |
+| Pronunciación: índice y protección por fotograma | 33 |
+| Limpieza del reparto de cantantes | 31 |
 | Relevos entre cantantes | 31 |
-| test_duo | 27 |
+| Voz doble y duetos | 27 |
 | Velocidad y escala de la afinación | 24 |
 | Consonantes en pasada aparte | 22 |
-| test_indice_fonetico | 21 |
-| test_separacion_cache | 21 |
-| test_stems_export | 21 |
+| Índice por tipo de sonido | 21 |
+| No volver a separar lo ya separado | 21 |
+| Exportar las pistas por separado | 21 |
 | Niveles de voz e instrumental | 21 |
-| test_master_referencia | 20 |
-| test_proyecto | 20 |
-| test_cantantes | 19 |
+| Equilibrio contra una canción de referencia | 20 |
+| El proyecto en un archivo | 20 |
+| Unir cantantes que son la misma persona | 19 |
 | Detección de intérpretes | 19 |
 | Volumen del máster y pico real | 19 |
-| test_recetas | 19 |
+| Recetas de mandos guardadas | 19 |
 | Cadena del Estudio y balance de la mezcla | 18 |
-| test_respiracion | 18 |
-| test_registro_tramos | 17 |
+| Respiraciones devueltas del original | 18 |
+| Registro del modelo, tramo a tramo | 17 |
 | Edición de tramos y silencios | 17 |
 | Datos de la pista | 17 |
 | Reparación del tono antes de clonar | 16 |
@@ -119,7 +119,7 @@ otra parte.
 | Aislamiento de las pruebas | 5 |
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
-| test_cover_gaps_conserva_duo | 4 |
+| Lo marcado a mano sobrevive al render | 4 |
 | Interfaz: progreso, tiempos, historial, exportación, avisos previos | 103 |
 | **Total** | **848** |
 
@@ -141,10 +141,10 @@ Compáralo con lo que costó que la otra mitad del programa funcionara bien:
 
 | | Comprobaciones | Grupos |
 |---|---:|---:|
-| La cadena de audio (separación, clonación, reparto, tratamiento) | 276 | 22 |
+| La cadena de audio (separación, clonación, reparto, tratamiento) | 589 | 33 |
 | El doblaje | 33 | 1 |
 
-**276 comprobaciones repartidas en 22 grupos** hicieron falta para que clonar una voz sobre
+**589 comprobaciones repartidas en 33 grupos** hicieron falta para que clonar una voz sobre
 una canción funcione de verdad. El doblaje tiene una ambición parecida y va con 33.
 
 No es que esté sin probar: está probado en su lógica —que los tramos se calculen bien, que
@@ -163,7 +163,7 @@ o no sale de aquí.
 
 Y cada vez que aparece un fallo que las pruebas no vieron venir, lo primero es **escribir la
 prueba que lo habría cazado**, antes de arreglarlo. Así el mismo fallo no puede volver dos
-veces. Buena parte de esas 385 nacieron exactamente así.
+veces. Buena parte de esas 848 nacieron exactamente así.
 
 ---
 

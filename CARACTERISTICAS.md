@@ -540,7 +540,7 @@ Ahora se apunta cuánto se subió cada pista y la cuenta se deshace antes de med
 
 ## Cómo se comprueba todo esto
 
-**385 comprobaciones automáticas** —309 sobre el motor de audio y 76 sobre la interfaz— que
+**848 comprobaciones automáticas** —745 sobre el motor de audio y 103 sobre la interfaz— que
 se ejecutan antes de dar por bueno un cambio. La cobertura es más alta justo en las partes
 que más veces se rompieron: la cobertura sigue a las cicatrices, no al tamaño del código.
 

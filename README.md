@@ -302,9 +302,9 @@ pasa del otro lado.
 
 ## Cómo se comprueba lo que se afirma
 
-Nada de la cadena de audio se cambia «a oído y listo». Hay **385 comprobaciones
-automáticas** que se ejecutan antes de dar por bueno un cambio —309 sobre el motor de audio
-y 76 sobre la interfaz— y la cobertura es más alta justo en las partes que más veces se
+Nada de la cadena de audio se cambia «a oído y listo». Hay **848 comprobaciones
+automáticas** que se ejecutan antes de dar por bueno un cambio —745 sobre el motor de audio
+y 103 sobre la interfaz— y la cobertura es más alta justo en las partes que más veces se
 rompieron: la cobertura sigue a las cicatrices, no al tamaño del código.
 
 ---
