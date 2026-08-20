@@ -80,16 +80,16 @@ otra parte.
 |---|---:|
 | Espacio y reverberación | 37 |
 | Letra y tiempos por palabra | 34 |
-| Doblaje e intervenciones | 33 |
+| Doblaje: intervenciones y montaje | 33 |
 | Pronunciación: índice y protección por fotograma | 33 |
 | Limpieza del reparto de cantantes | 31 |
 | Relevos entre cantantes | 31 |
 | Voz doble y duetos | 27 |
 | Detección de intérpretes | 25 |
-| test_acceso_remoto | 24 |
+| Uso desde el móvil o la tablet | 24 |
 | Velocidad y escala de la afinación | 24 |
 | Consonantes en pasada aparte | 22 |
-| test_coros | 21 |
+| Coros y segundas voces | 21 |
 | Índice por tipo de sonido | 21 |
 | No volver a separar lo ya separado | 21 |
 | Exportar las pistas por separado | 21 |
@@ -105,40 +105,40 @@ otra parte.
 | Registro del modelo, tramo a tramo | 17 |
 | Datos de la pista | 17 |
 | Reparación del tono antes de clonar | 16 |
-| test_realce_medido | 16 |
+| Realce medido contra el disco | 16 |
 | Plan de efectos | 16 |
 | Color tonal | 16 |
 | Mezcla y máster | 15 |
 | Video e imagen | 15 |
-| test_cola_render | 14 |
-| test_doblaje_juego | 14 |
-| test_stems_partes | 14 |
-| test_relevo_en_hueco | 13 |
-| test_doblaje_tomas | 11 |
-| test_pegar_a_saltos_de_tono | 11 |
+| La cola de canciones | 14 |
+| Doblaje: nota de cada toma | 14 |
+| Las piezas del instrumental | 14 |
+| Relevos que caen en un silencio | 13 |
+| Doblaje: encaje y volumen de la toma | 11 |
+| Saltos de tono al pegar tramos | 11 |
 | Afinación | 11 |
 | Precisión de los efectos | 10 |
-| test_respiracion_cantidad | 10 |
+| Cuánta respiración del original se presta | 10 |
 | Dicción y consonantes | 10 |
 | Importación por enlace | 10 |
-| test_enlaces_sitios | 9 |
+| Enlaces: de qué sitios se acepta | 9 |
 | Huella del equipo y licencia | 9 |
-| test_sin_clonar | 9 |
-| test_video_doblaje | 9 |
+| Tramos que se dejan sin clonar | 9 |
+| Vídeo: recorte, resolución y limpieza | 9 |
 | Quitar sala del original | 9 |
 | Reparación del clon (agudos y caídas) | 9 |
 | Dinámica y respiración | 8 |
 | Cruces entre cantantes | 7 |
-| test_doblaje_precision | 7 |
+| Doblaje: que las tomas no se pisen | 7 |
 | Atadura de la licencia al equipo | 7 |
-| test_doblaje_fronteras | 6 |
+| Doblaje: dónde acaba cada hablante | 6 |
 | Aislamiento de las pruebas | 5 |
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
 | Lo marcado a mano sobrevive al render | 4 |
-| test_endpoints_responden | 4 |
-| test_injerto_rampa | 3 |
-| test_video_no_se_borra | 3 |
+| Que las peticiones lleguen hasta el final | 4 |
+| Injerto de banda alta | 3 |
+| Vídeo: que el límite no borre la imagen | 3 |
 | Interfaz: progreso, tiempos, historial, exportación, avisos previos | 115 |
 | **Total** | **1066** |
 
@@ -146,15 +146,16 @@ otra parte.
 
 <!-- CUENTA-PRUEBAS:FIN -->
 
-### El doblaje aparece con 33 y por eso mismo está «en pruebas»
+### El doblaje va por 98 pruebas propias y aun así sigue «en pruebas»
 
-Mirando la tabla, 33 parece mucho: es la segunda cifra más alta. **Y sin embargo es
-justamente el motivo de la advertencia.** Hay que leerlo en contexto.
+En la tabla el doblaje ya no es una fila: son ocho, y suman 98. **Y sigue marcado como en
+pruebas**, que es lo que hay que explicar.
 
-Esos 33 son de las funciones con más comprobaciones propias, sí — pero es que **el doblaje
-no es una función, es un sistema nuevo entero** dentro de la aplicación. Tiene su propia
-detección de intervenciones, su propio reparto de personajes, su sincronía con la imagen,
-sus avisos de entrada, su grabación y su montaje sobre el vídeo.
+No es una función, es **un sistema nuevo entero** dentro de la aplicación: su propia
+detección de intervenciones, su reparto de personajes, la sincronía con la imagen, una voz
+distinta por personaje, el encaje para que dos tomas no se pisen, la nota de cada toma, la
+grabación y el montaje sobre el vídeo. Cada una de esas piezas trajo sus comprobaciones
+porque cada una se rompió al menos una vez.
 
 Compáralo con lo que costó que la otra mitad del programa funcionara bien:
 

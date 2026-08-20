@@ -551,7 +551,10 @@ Ahora se apunta cuánto se subió cada pista y la cuenta se deshace antes de med
 
 - **Aceleración por tarjeta gráfica** con DirectML: AMD, Intel y también NVIDIA, sin
   instalar ni configurar nada.
-- **Importación por enlace** de YouTube, o grabación directa con el micrófono.
+- **Importación por enlace** de YouTube, SoundCloud, Bandcamp y Suno, o grabación
+  directa con el micrófono. La lista de sitios es cerrada a propósito: la herramienta
+  que hay debajo soporta más de mil setecientos, y sin esa puerta el campo de texto se
+  convierte en un descargador de cualquier cosa de internet desde tu ordenador.
 - **Tiempo restante real**, calculado a partir de lo que va tardando, no una barra que
   avanza inventando.
 - **Vigilancia de memoria**: el programa anota cuánta lleva gastada, para que un cierre
