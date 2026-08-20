@@ -493,8 +493,16 @@ Ahora se apunta cuánto se subió cada pista y la cuenta se deshace antes de med
 
 ## Estudio, mezcla y edición
 
-- **Editor multipista**: silenciar tramos, ajustar las regiones donde se aplica cada efecto
-  y comparar versiones sin salir de la sesión.
+- **Editor multipista**: un carril por instrumento —batería, bajo, guitarra, piano y el
+  resto—, cada uno con su onda y sus silencios. Se puede callar la batería solo en el
+  puente sin tocar al resto de la banda, que con el instrumental ya sumado es imposible.
+- **Escuchar cada pista sola**, con los silencios que le hayas marcado ya puestos: lo que
+  se oye es lo que va a quedar. Los cortes se programan con el reloj de audio y no
+  vigilando el reproductor, que llega tarde y dejaría colarse un cuarto de segundo de voz.
+- **Zoom hasta ocho aumentos** con una sola barra de desplazamiento para todos los
+  carriles: dos barras separadas dejan de mirar al mismo instante en cuanto te acercas.
+- **Copiar los recortes de un carril y pegarlos en otro**, y deshacer con Ctrl+Z sobre
+  todo lo que se edite en la sesión.
 - **Efectos por tramos**: los efectos no son globales; se marcan sobre el mapa de la
   canción.
 - **Prueba de 8 segundos** antes de procesar el tema entero. Es lo que evita esperar
@@ -512,8 +520,25 @@ Ahora se apunta cuánto se subió cada pista y la cuenta se deshace antes de med
 
 - **Vídeo 1:1**: entra un vídeo, sale el mismo vídeo con la voz clonada dentro. Sin
   recodificar la imagen.
-- **Doblaje**: el vídeo corre sin la voz original y avisa **tres segundos antes** de cada
-  intervención, indicando a quién le toca. Grabas leyendo la pantalla.
+- **Doblaje**: pantalla independiente y completa — carga su propio vídeo, lo separa y
+  detecta quién habla sin pasar por ninguna otra. El vídeo corre avisando **tres segundos
+  antes** de cada intervención, con la frase original en pantalla si la sesión está
+  transcrita.
+- **Una voz por personaje**: grabas todas las intervenciones tú, y cada una sale con el
+  modelo que le hayas asignado a ese personaje. Grabar y convertir están separados: se
+  graba del tirón y se pone la voz cuando la interpretación ya vale.
+- **Nota por toma**: sincronía, intensidad y entonación, medidas contra la interpretación
+  original. No se puntúa el parecido de voz — no tienes la voz de ese actor y esa nota no
+  diría nada de lo que has hecho.
+- **Encaje al milisegundo**: la costura entre hablantes se lleva al punto más callado que
+  hay entre las dos voces, y ninguna toma puede invadir la entrada del actor siguiente.
+- **Dos líneas de tiempo**: la voz original arriba y tus tomas debajo, en la misma escala,
+  dibujándose mientras hablas. Verde grabando, azul si cuadra, rojo si se sale del hueco.
+- **Manos libres**: una tecla configurable arranca y suelta la grabación, que además se
+  detiene sola al acabar el clip.
+- **Salida**: el vídeo doblado se descarga en la resolución que elijas, con una opción de
+  limpiar la imagen para material bajado de redes — quita los bloques de la compresión y
+  afila el contorno. No inventa detalle: no es un escalado por IA.
 
 > **El doblaje no está terminado.** Funciona, pero no acumula todavía pruebas suficientes
 > para darlo por bueno en todos los casos. Está marcado como tal dentro del programa.
@@ -540,7 +565,8 @@ Ahora se apunta cuánto se subió cada pista y la cuenta se deshace antes de med
 
 ## Cómo se comprueba todo esto
 
-**848 comprobaciones automáticas** —745 sobre el motor de audio y 103 sobre la interfaz— que
+**Más de mil comprobaciones automáticas** —951 sobre el motor de audio y 115 sobre la
+interfaz, 1.066 en total— que
 se ejecutan antes de dar por bueno un cambio. La cobertura es más alta justo en las partes
 que más veces se rompieron: la cobertura sigue a las cicatrices, no al tamaño del código.
 

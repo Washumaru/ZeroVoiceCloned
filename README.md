@@ -92,7 +92,9 @@ en manos de quien ya sabe mezclar.
 | **Masteriza** | al volumen del disco original, o al de la plataforma que elijas |
 | **Exporta** | audio con etiquetas, las pistas por separado, el vídeo, o la letra en `.lrc` |
 | **Guarda** | el proyecto entero en un archivo, y los mandos como recetas reutilizables |
-| **Dobla** | vídeo con avisos de entrada — *función en pruebas, lee más abajo* |
+| **Importa** | por archivo o por enlace de YouTube, SoundCloud, Bandcamp y Suno |
+| **Edita** | un carril por instrumento, con zoom, recortes copiables y escucha por pista |
+| **Dobla** | vídeo con avisos de entrada, voz por personaje y nota por toma — *en pruebas* |
 
 Todo local. Sin cuenta, sin suscripción, sin conexión obligatoria y sin límite mensual.
 
@@ -284,11 +286,16 @@ bien. Pueden sonar mejor, y en eso sigo.
 
 ---
 
-## Cuando el enlace de YouTube falla
+## Cuando un enlace falla
 
-Si pegas un enlace y dice que no se pudo descargar, **el problema no está en el programa**.
-YouTube cambia con frecuencia cómo sirve el audio y bloquea las descargas según la
-conexión, el vídeo o el momento del día.
+Se aceptan enlaces de **YouTube, SoundCloud, Bandcamp y Suno**. La lista es cerrada a
+propósito: la herramienta que hay debajo soporta más de mil setecientos sitios, y sin esa
+puerta el campo de texto se convierte en un descargador de cualquier cosa de internet
+desde tu propio ordenador.
+
+Si pegas un enlace y dice que no se pudo descargar, **el problema no suele estar en el
+programa**. YouTube en particular cambia con frecuencia cómo sirve el audio y bloquea las
+descargas según la conexión, el vídeo o el momento del día.
 
 **No hay una solución de verdad.** Lo que funciona es volver a intentarlo —a veces al
 segundo o tercer intento entra— o descargar el audio por tu cuenta y subirlo como archivo,
@@ -302,9 +309,9 @@ pasa del otro lado.
 
 ## Cómo se comprueba lo que se afirma
 
-Nada de la cadena de audio se cambia «a oído y listo». Hay **848 comprobaciones
-automáticas** que se ejecutan antes de dar por bueno un cambio —745 sobre el motor de audio
-y 103 sobre la interfaz— y la cobertura es más alta justo en las partes que más veces se
+Nada de la cadena de audio se cambia «a oído y listo». Hay **más de mil comprobaciones
+automáticas** que se ejecutan antes de dar por bueno un cambio —951 sobre el motor de audio
+y 115 sobre la interfaz, 1.066 en total— y la cobertura es más alta justo en las partes que más veces se
 rompieron: la cobertura sigue a las cicatrices, no al tamaño del código.
 
 ---

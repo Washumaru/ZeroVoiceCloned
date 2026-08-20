@@ -65,8 +65,9 @@ el problema.
 
 ## Las pruebas automáticas
 
-**848 comprobaciones** que se ejecutan antes de dar por bueno un cambio: 745 sobre el motor
-de audio y 103 sobre la interfaz.
+**Más de mil comprobaciones** que se ejecutan antes de dar por bueno un cambio: 951 sobre
+el motor de audio y 115 sobre la interfaz — 1.066 en total, y la tabla de abajo suma
+exactamente eso.
 
 No están repartidas por igual. **La cobertura sigue a las cicatrices**: las zonas con más
 pruebas son las que más veces se rompieron, no las más grandes. El espacio y la
@@ -84,8 +85,11 @@ otra parte.
 | Limpieza del reparto de cantantes | 31 |
 | Relevos entre cantantes | 31 |
 | Voz doble y duetos | 27 |
+| Detección de intérpretes | 25 |
+| test_acceso_remoto | 24 |
 | Velocidad y escala de la afinación | 24 |
 | Consonantes en pasada aparte | 22 |
+| test_coros | 21 |
 | Índice por tipo de sonido | 21 |
 | No volver a separar lo ya separado | 21 |
 | Exportar las pistas por separado | 21 |
@@ -93,37 +97,52 @@ otra parte.
 | Equilibrio contra una canción de referencia | 20 |
 | El proyecto en un archivo | 20 |
 | Unir cantantes que son la misma persona | 19 |
-| Detección de intérpretes | 19 |
 | Volumen del máster y pico real | 19 |
 | Recetas de mandos guardadas | 19 |
+| Edición de tramos y silencios | 19 |
 | Cadena del Estudio y balance de la mezcla | 18 |
 | Respiraciones devueltas del original | 18 |
 | Registro del modelo, tramo a tramo | 17 |
-| Edición de tramos y silencios | 17 |
 | Datos de la pista | 17 |
 | Reparación del tono antes de clonar | 16 |
+| test_realce_medido | 16 |
 | Plan de efectos | 16 |
 | Color tonal | 16 |
 | Mezcla y máster | 15 |
 | Video e imagen | 15 |
+| test_cola_render | 14 |
+| test_doblaje_juego | 14 |
+| test_stems_partes | 14 |
+| test_relevo_en_hueco | 13 |
+| test_doblaje_tomas | 11 |
+| test_pegar_a_saltos_de_tono | 11 |
 | Afinación | 11 |
 | Precisión de los efectos | 10 |
+| test_respiracion_cantidad | 10 |
 | Dicción y consonantes | 10 |
 | Importación por enlace | 10 |
+| test_enlaces_sitios | 9 |
 | Huella del equipo y licencia | 9 |
+| test_sin_clonar | 9 |
+| test_video_doblaje | 9 |
 | Quitar sala del original | 9 |
 | Reparación del clon (agudos y caídas) | 9 |
 | Dinámica y respiración | 8 |
 | Cruces entre cantantes | 7 |
+| test_doblaje_precision | 7 |
 | Atadura de la licencia al equipo | 7 |
+| test_doblaje_fronteras | 6 |
 | Aislamiento de las pruebas | 5 |
 | Efectos aplicados al render | 5 |
 | Análisis de efectos del tema | 4 |
 | Lo marcado a mano sobrevive al render | 4 |
-| Interfaz: progreso, tiempos, historial, exportación, avisos previos | 103 |
-| **Total** | **848** |
+| test_endpoints_responden | 4 |
+| test_injerto_rampa | 3 |
+| test_video_no_se_borra | 3 |
+| Interfaz: progreso, tiempos, historial, exportación, avisos previos | 115 |
+| **Total** | **1066** |
 
-<sub>745 sobre el motor de audio en 43 grupos y 103 sobre la interfaz en 9. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
+<sub>951 sobre el motor de audio en 61 grupos y 115 sobre la interfaz en 11. Tabla generada por `tools/contar_pruebas.py` leyendo el código: no se escribe a mano, así que no puede quedarse desfasada.</sub>
 
 <!-- CUENTA-PRUEBAS:FIN -->
 
@@ -141,11 +160,13 @@ Compáralo con lo que costó que la otra mitad del programa funcionara bien:
 
 | | Comprobaciones | Grupos |
 |---|---:|---:|
-| La cadena de audio (separación, clonación, reparto, tratamiento) | 589 | 33 |
-| El doblaje | 33 | 1 |
+| La cadena de audio (separación, clonación, reparto, tratamiento) | 795 | 51 |
+| El doblaje y el vídeo | 98 | 8 |
 
-**589 comprobaciones repartidas en 33 grupos** hicieron falta para que clonar una voz sobre
-una canción funcione de verdad. El doblaje tiene una ambición parecida y va con 33.
+**795 comprobaciones repartidas en 51 grupos** hicieron falta para que clonar una voz sobre
+una canción funcione de verdad. El doblaje tiene una ambición parecida y va con 98, que ya
+no es poco: la sincronía de las tomas, el encaje entre hablantes y el vídeo tienen su
+propia red. Sigue siendo la parte más joven del programa.
 
 No es que esté sin probar: está probado en su lógica —que los tramos se calculen bien, que
 los avisos caigan donde toca, que el reparto sea el correcto— y todas esas comprobaciones
@@ -163,7 +184,7 @@ o no sale de aquí.
 
 Y cada vez que aparece un fallo que las pruebas no vieron venir, lo primero es **escribir la
 prueba que lo habría cazado**, antes de arreglarlo. Así el mismo fallo no puede volver dos
-veces. Buena parte de esas 848 nacieron exactamente así.
+veces. Buena parte de ellas nacieron exactamente así.
 
 ---
 

@@ -13,6 +13,196 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
 
 ### Corregido
 
+- **En el Editor faltaban los coros, el botón de escucharlos, deshacer y las voces del
+  dúo.** Las líneas de tiempo se mudaron a la pantalla del Editor, y todo lo que estaba
+  montado a su alrededor se quedó en IA Voz: la fila de coros y segundas voces no salía,
+  con ella se perdía el botón que reproduce una región aislada para saber de quién es,
+  **Ctrl+Z y Ctrl+Y no hacían nada** en la pantalla donde justamente se recorta y se
+  reparte, y el desplegable de segunda voz del dúo salía vacío.
+
+  Ninguna de las cuatro cosas se ha copiado de una pantalla a otra, que habría dejado dos
+  versiones destinadas a separarse. Lo que se edita —cantantes, coros, efectos, silencios
+  y el modelo y el tono de cada voz— es de la **canción**, no de la pantalla: ahora vive
+  en un solo sitio y las dos pantallas leen de ahí. El historial de deshacer es uno solo y
+  lo comparten.
+
+- **Al clon le faltaba brillo justo donde el modelo deja de llegar.** El programa ya le
+  presta a la voz clonada la banda alta del vocal original —es lo que le devuelve el aire
+  que ningún modelo de estos sabe generar—, pero ese préstamo entraba demasiado despacio:
+  tardaba una octava entera en aplicarse del todo, así que la franja intermedia se
+  quedaba a medio cubrir. Medido sobre tres canciones, contra el vocal del disco:
+
+      8 kHz    antes -7,2 dB    ahora -4,5 dB
+     10 kHz    antes -3,6 dB    ahora -1,3 dB
+
+  Ahora el préstamo entra en media octava. Se comprobó que la voz sigue siendo la del
+  modelo: por debajo de 4 kHz —donde vive quién canta— no cambia nada, porque ahí no se
+  toca. Y no se acortó más: probando con un cuarto de octava, en una de las tres
+  canciones la voz se pasaba de brillo por encima del propio disco.
+
+- **La cadena del Estudio le metía a la voz una curva que nadie había pedido.** Era la
+  única parte del programa que no escuchaba la canción: aplicaba siempre los mismos
+  números —presencia arriba, corte abajo y un quitasiseos permanente— sin mirar si esa
+  voz los necesitaba.
+
+  Se midió pasándola por encima del **vocal original de tres discos**, o sea voces que ya
+  estaban perfectas. A las tres les levantaba unos 4 dB en 4-5 kHz y les quitaba 2 dB justo
+  encima: un escalón de más de 5 dB que se oye como voz nasal y sin aire. Y sobre el clon
+  era peor todavía, porque el clon no llega con sibilancia de sobra sino con 9 dB de menos:
+  el quitasiseos estaba borrando lo poco que el modelo consigue producir.
+
+  Ahora esas cuatro decisiones salen de comparar la voz clonada con el vocal del disco, y
+  cada una tiene el mismo tope que antes: solo se sube lo que falte, y nunca por encima de
+  lo que tiene el original. Si a la voz no le falta nada, la etapa se aparta.
+
+      sobre el vocal del disco     escalón de 4 a 6 kHz    antes +5,1 / +5,2 / +5,7 dB
+                                                           ahora  0,0 /  0,0 /  0,0 dB
+
+      sobre la voz clonada         distancia al disco      antes 15,0 / 34,0 / 47,5 dB
+                                                           ahora  5,9 / 29,6 / 43,7 dB
+
+  Se comprobó además que el clon no se acerca al timbre del cantante original al hacerlo:
+  la voz sigue siendo la del modelo, solo que sin la curva de más.
+
+- **El detector automático de cantantes decía «2» en una canción de cinco, y lo decía muy
+  seguro.** En «Diles (Full Remix)» —Bad Bunny con Farruko, Ozuna, Arcángel y Ñengo Flow—
+  detectó dos voces y presentó el resultado sin ninguna señal de duda.
+
+  La causa es de fondo y sigue ahí: la medida que decide cuántos grupos hay premia partir en
+  dos. Varias voces pasadas por la misma mezcla no forman grupos separados sino un continuo,
+  y cortar un continuo por la mitad siempre puntúa mejor que cortarlo en cinco. En esa
+  canción K=2 saca 0,334 y K=5 saca 0,225: no es un empate que desempatar, gana de calle.
+
+  Lo que sí se ha arreglado es que **el programa lo diga**. La curva de puntuaciones delata
+  a esa canción: baja de 2 a 3 y vuelve a subir hasta 5. Si de verdad hubiera dos cantantes,
+  partirlos en más empeoraría siempre; que repunte significa que arriba hay voces sin
+  recoger. Ahora ese repunte baja la confianza y la pantalla propone los números que
+  convendría probar — en esta canción, **5 y 6**.
+
+  El aviso exige que el repunte tenga tamaño (un 10 %), medido para no llenar de avisos las
+  canciones sanas: en «Ghost Boy», de un solo cantante, la mayor subida es del 0,05 % y no
+  dispara nada.
+
+  Y en el desplegable, **«Autodetectar» ya no dice «recomendado»**, con una nota que explica
+  que si sabes cuántos artistas cantan conviene forzar ese número. Recomendar el camino que
+  falla era lo peor de las dos cosas.
+
+- **Un cantante seguía cantando la parte del siguiente durante segundo y medio.** El relevo
+  se colocaba tarde, así que el arranque del cantante que entraba salía convertido con el
+  modelo y el tono del que se acababa de ir. Con dos voces de registros distintos se oye
+  clarísimo: la frase entra una octava fuera de sitio y se corrige sola al cabo de un rato.
+
+  El detector de cantantes decide muy bien **quién** canta y bastante peor **dónde**: mira
+  la canción en ventanas de tres segundos que avanzan de medio en medio, así que sus
+  fronteras llegan con hasta un segundo de error. Había un afinador que lo corregía
+  comparando el timbre de los dos lados, pero se rinde cuando la evidencia no es
+  concluyente — y dos personas cantando la misma frase, en la misma sala y con la misma
+  reverb, se parecen bastante.
+
+  Faltaba mirar lo más evidente: **el registro**. En la canción donde se vio, el que sale
+  canta en 294 Hz y el que entra en 174; ese salto es imposible de confundir con otra cosa,
+  y el dato ya estaba calculado desde antes. Ahora el relevo se lleva al punto donde el tono
+  da el salto. Medido sobre ese caso: la frontera pasa de estar **1,50 s tarde a 0,02 s**.
+
+  Cuando los dos cantantes tienen el mismo registro no se toca nada, que es lo correcto:
+  ahí esta señal no distingue, y moverse sin evidencia sería cambiar un error por otro.
+
+- **La voz del cantante que entra sonaba unos segundos con el timbre del anterior.** En un
+  relevo —el cantante 1 calla, empieza el 2— las primeras sílabas del que llegaba salían
+  convertidas con el modelo y el tono del que se acababa de ir, y la cosa se corregía sola
+  al cabo de un par de segundos.
+
+  Eran tres cosas sumándose. El detector de cantantes trabaja con ventanas de tres segundos
+  y saltos de medio, así que la entrada del que llega ya quedaba apuntada con hasta un
+  segundo de retraso. El afinador fino que existe para arreglar justo eso **se saltaba
+  siempre que hubiera una pausa entre los dos** — o sea, casi siempre, porque entre cantante
+  y cantante suele haber silencio. Y el silencio que quedaba en medio, que llevaba dentro el
+  arranque del que entra, se repartía **por la mitad geométrica**, sin mirar el audio.
+
+  Ahora ese silencio se parte por donde de verdad arranca la voz que entra: se busca el
+  punto más callado justo antes de su primera sílaba, saltándose la cola de reverb del que
+  se va. Cada cantante empieza en su propia voz.
+
+- **El detector de coros no detectaba coros.** Lo único que miraba era cuánta energía
+  quedaba tras separar la voz principal — y ahí siempre queda energía, porque ninguna
+  separación es perfecta: una nota potente con reverb dejaba un resto que se marcaba como
+  «segunda voz» sin que hubiera nadie más cantando.
+
+  Medido sobre dos canciones, de lo que marcaba como coro sólo el **0 %** y el **9 %** tenía
+  de verdad dos voces. Fuera de lo que marcaba había más segundas voces que dentro. Y el
+  resultado lo decidía un número escrito a mano: moverlo una décima multiplicaba por siete
+  lo detectado, y dos décimas lo borraban entero.
+
+  El detector nuevo busca lo que de verdad distingue a un coro: que el resto **tenga su
+  propia nota**, que la **sostenga**, y que esa nota forme un **intervalo musical** con la
+  voz principal — terceras, cuartas, quintas, sextas, octavas. El ruido de una separación no
+  canta en cuartas. Sobre las mismas dos canciones: **69 %** y **72 %** de acierto.
+
+  Cada región detectada dice ahora en qué se basa —«dos voces, 5ª justa»— y con cuánta
+  confianza, para que se pueda comprobar en vez de creer.
+
+  El programa tenía **dos** detectores de coros: uno para la línea de tiempo y otro que
+  reparte las segundas voces durante la mezcla. Se midieron los dos con dos varas —de lo que
+  marca, cuánto es de verdad una segunda voz; y de las que hay, cuántas llega a marcar— y el
+  nuevo gana en las dos, en las dos canciones probadas:
+
+      canción A    antes  0 % y  0 %      ahora  66 % y 55 %
+      canción B    antes  9 % y  4 %      ahora  73 % y  7 %
+
+  Así que ahora los dos sitios usan el mismo, y el de energía se ha retirado del programa.
+
+  **Se le escapan coros a propósito, y conviene saberlo.** Exige las tres señales a la vez, y
+  ante la duda deja el tramo como voz principal. Perder un coro flojo significa que se clona
+  como si fuera el cantante, que es molesto; marcarlo de más deja **sin clonar** un trozo de
+  la voz principal, y entonces aparece la voz original del disco en mitad de una frase. De
+  los dos errores, el segundo se oye muchísimo más.
+
+- **Ningún enlace de YouTube se descargaba.** Al pegar cualquier dirección salía «No se
+  pudo descargar ese video», daba igual el vídeo: público, conocido y sin restricción
+  ninguna. La ficha del vídeo (título, duración) sí se leía bien; lo que YouTube cortaba
+  era la descarga del audio en sí, rechazándola por venir con la firma del navegador.
+  Ahora el audio se pide con la firma de la aplicación de Android, que YouTube sí atiende,
+  y quedan otras dos de respaldo por si esa también se cierra.
+
+- **La pantalla se quedaba en blanco justo al empezar a clonar.** Se pulsaba el botón, y en
+  vez de la tarjeta que dice qué está haciendo el motor aparecía una pantalla vacía y
+  congelada, con el programa entero inservible hasta reiniciarlo. Por dentro el trabajo
+  seguía —la canción se clonaba y se guardaba igual—, pero no había forma de verlo.
+
+  Un icono de esa tarjeta se quedó sin declarar al partir en trozos el archivo más grande
+  de la interfaz. Es un fallo que no se ve al construir el programa: sólo revienta al
+  ejecutarse, y como esa tarjeta **sólo aparece al clonar**, todo lo demás funcionaba. Se
+  añadió una comprobación automática que revisa los cuarenta archivos de la interfaz y
+  caza este tipo de error antes de que llegue a nadie; encontró otro igual escondido en la
+  librería de voces.
+
+- **Recargar el navegador en Cola o en Doblaje devolvía un texto de programador.** Esas dos
+  pantallas se llamaban igual que dos direcciones internas del motor, así que al recargar
+  ganaba el motor y salía un galimatías en vez de la aplicación.
+
+- **El separador de seis pistas se estaba comiendo la guitarra y el piano.** Quien elegía
+  `htdemucs_6s` en Ajustes —el modelo que la propia pantalla recomienda «por si quieres
+  las pistas sueltas»— recibía la canción **sin guitarra y sin piano**, y sin ningún aviso.
+
+  El motivo: ese modelo devuelve seis pistas y los otros dos devuelven cuatro, y el
+  programa las cogía por su posición en la lista en vez de por su nombre. Sumaba las tres
+  primeras como instrumental y daba la cuarta por voz. Con cuatro pistas eso funciona por
+  casualidad; con seis, la guitarra y el piano están en las posiciones quinta y sexta y no
+  entraban en la suma. El programa pagaba los minutos de separar seis instrumentos para
+  tirar dos.
+
+  Ahora cada pista se busca por su nombre y el instrumental es la suma de **todo** lo que
+  no es voz, sea cual sea el modelo y sean cuantas sean sus pistas.
+
+- **El interruptor de respiraciones no llegaba al modo de una sola voz.** Se apagaba en
+  Ajustes, se guardaba, se veía apagado — y al clonar con una voz el motor seguía
+  devolviendo las respiraciones del original, porque la pantalla nunca le mandaba ese dato.
+  En multivoz sí funcionaba, así que apagarlo cambiaba el resultado o no según por qué
+  botón se hubiera entrado.
+
+  Ni ese interruptor ni el mando nuevo de cantidad se guardaban al cerrar, además: quien lo
+  apagaba a propósito se lo encontraba encendido al volver a abrir el programa.
+
 - **Dos interruptores de Ajustes no hacían absolutamente nada.** «Protección de
   respiraciones» y «Corrección de formantes» se podían encender y apagar, se guardaban y
   hasta salían en las recetas — y **nunca llegaban al motor**. Ninguno de los dos existía
@@ -205,6 +395,280 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   de volumen baja ligeramente (7,31 % → 7,20 %).
 
 ### Nuevo
+
+- **La vista previa de una voz salía con eco y sala aunque los tuvieras apagados.** No
+  llegaba al motor ninguno de tus interruptores: la llamada mandaba sólo desde qué
+  segundo preescuchar, y lo que no se manda el programa lo daba por activado. Así que la
+  preescucha copiaba la sala del original, el color y el autotune medido pasara lo que
+  pasara, y después la mezcla final —que sí los respetaba— sonaba distinta.
+
+  Una vista previa está para predecir el render. Si aplica cosas que el render no va a
+  aplicar, engaña, y es peor que no tenerla. Ahora manda exactamente lo que tienes puesto.
+
+- **La pantalla de subida dice de dónde acepta enlaces, y aclara lo del vídeo.** Debajo
+  del campo aparecen los sitios soportados, y la lista la manda el motor: no puede quedarse
+  prometiendo un sitio que ya no acepta.
+
+  Y se dice una cosa que antes había que adivinar: **el vídeo tiene que ser un archivo
+  tuyo.** Es la confusión natural — si el programa acepta enlaces y acepta vídeos,
+  cualquiera supone que le puede pegar el enlace de un vídeo y recuperarlo entero con la
+  voz clonada. De un enlace sólo se trae el audio.
+
+- **El campo de enlaces acepta ahora SoundCloud, Bandcamp y Suno, además de YouTube.**
+  Se pega la dirección igual que antes y el resto del camino es el mismo: se descarga, se
+  separa y se clona sin más pasos.
+
+  Suno necesitó camino propio: la herramienta que usa el programa para todo lo demás se
+  niega en redondo con esa web. Ahora se resuelve leyendo la página del tema, que sirve
+  el audio ella misma. Probado con un enlace real de los cortos, de los que empiezan por
+  `suno.com/s/`.
+
+  **Vimeo y Audiomack se quedaron fuera a propósito.** Vimeo falla hoy en todos los
+  vídeos que se probaron —es un problema del sitio, no de un vídeo concreto— y aceptar un
+  enlace para luego no poder traerlo es peor que decir que no desde el principio.
+
+  La lista de sitios sigue siendo cerrada. No es desconfianza hacia quien lo usa: sin esa
+  puerta, ese campo de texto se convierte en un descargador de cualquier cosa de internet
+  desde tu propio ordenador.
+
+- **La consola ya no se inunda al descargar.** La barra de progreso escribía cientos de
+  líneas de «12.4% of 4.05MiB» y enterraba las dos que se leen de verdad: qué se está
+  bajando y si salió bien.
+
+- **El doblaje salía desplazado y bajo, aunque hubieras grabado con el tiempo exacto.**
+  Dos cosas a la vez, y las dos nuestras.
+
+  Al pulsar Grabar, la imagen arranca **un segundo antes** de la frase — hace falta para
+  ver la entrada y coger aire. Tú hablas cuando toca, así que tu toma llega con ese
+  segundo de silencio dentro… y se colocaba entera al principio del hueco. Tu voz entraba
+  un segundo tarde y por el final se salía y se cortaba. Ahora ese silencio se quita antes
+  de montar, dejando un pelín de aire para no descabezar la primera sílaba.
+
+  Y sonaba muy baja porque nada igualaba el nivel: un micrófono casero está muy por debajo
+  de un vocal de disco. Ahora cada toma se lleva al nivel que tenía la voz original en ese
+  mismo tramo, con tope de 18 dB — subir más solo levantaría el ruido de la habitación.
+
+- **Grabar ya no clona: se pone la voz cuando tú quieras.** Antes, al soltar cada toma, se
+  convertía con el modelo del personaje ahí mismo. Eso obliga a esperar —y a veces la
+  conversión falla— por grabaciones que ibas a repetir de todas formas. Ahora se graba del
+  tirón y cada intervención tiene su botón **Poner voz**, más uno de **Poner voz a todas**
+  para dejarlo hecho al final. Tu grabación se guarda aparte de la convertida, así que se
+  puede reintentar sin perder la interpretación.
+
+- **El marcador acusaba de entrar tarde a quien entraba clavado.** La imagen arranca un
+  segundo antes de la frase, así que la toma llega con ese silencio delante — y la nota lo
+  contaba como retraso. Medido sobre una toma perfecta: **29 puntos y «entras a 1000 ms»**
+  antes, **100 y 0 ms** ahora.
+
+- **Grabar con una tecla, la que tú elijas.** Doblando se mira la imagen, no el ratón:
+  buscar el botón mientras corre el clip es perder la entrada. La misma tecla arranca y
+  suelta, sobre el clip que tengas elegido. Viene puesta en la **R** y se cambia pulsando
+  «Grabar con R» y la tecla nueva. Se recuerda entre sesiones — el espacio sigue siendo
+  play/pausa y no se puede reasignar a grabar.
+
+- **La voz doblada sube hasta el volumen del clip original.** Se mide el volumen que tenía
+  la voz en ese tramo y la toma se lleva ahí. Y se mide solo donde **suena**: promediando
+  el archivo entero mandan tus silencios, así que una toma con pausas se quedaba corta
+  aunque el ajuste dijera que cuadraba.
+
+- **Mientras doblas un clip, lo demás se calla.** Los otros tramos de ese personaje y los
+  de los demás. Doblando una frase, oír la anterior entrando por detrás solo despista — y
+  el segundo de margen antes de la entrada solía traer la cola de quien acababa de hablar.
+
+- **La grabación se detiene sola al acabar el clip**, y la onda de tu voz **se dibuja
+  mientras hablas**, cayendo en su hueco en tiempo real. Antes había que soltar a mano
+  justo al terminar la frase, y soltar tarde metía en la toma el arranque del siguiente.
+
+- **El tramo de un hablante seguía marcado cuando el siguiente ya hablaba.** Se veía en la
+  onda: la zona roja del hablante 1 se metía dentro de la primera frase del 2. Doblando es
+  fatal — grabas la frase del 1 sobre un hueco que incluye el arranque del 2, y al montar
+  tu voz le tapa la entrada.
+
+  No era un error de cálculo sino la resolución de la herramienta: el análisis mira la
+  canción en ventanas de tres segundos, así que sus fronteras llegan con hasta un segundo
+  de retraso. Ahora, donde cambia el turno, la costura se lleva **al punto más callado que
+  hay entre las dos voces**, que es donde de verdad cambia. Dos frases seguidas de la misma
+  persona no se tocan: eso no es un relevo.
+
+  Y como ninguna detección automática acierta siempre: **se puede volver a calcular** con
+  el número de hablantes que le digas, y **cambiar a mano quién dice cada intervención**
+  desde su propia fila.
+
+- **Cargabas un vídeo en Doblaje y te decía que esa sesión no tenía vídeo.** Con el mp4
+  delante. El límite de la versión de prueba, además de acortar el audio, **borraba el
+  archivo original** — y de ahí es de donde sale la imagen. Ahora ese archivo se recorta
+  en vez de borrarse: el límite se cumple igual (en el disco no queda material completo) y
+  la imagen de los segundos que sí se pueden doblar se conserva.
+
+- **En Doblaje se oía el instrumental en vez de las voces.** Al revés de lo que hace
+  falta: doblando se imita a alguien, así que hay que oír cómo lo dice, con qué intención
+  y en qué milésima entra. El instrumental tapaba justo eso. Ahora suena la voz original
+  mientras trabajas, y el instrumental entra al final, al montar, que es donde la voz
+  nueva tiene que convivir con la música.
+
+- **Decir cuántos actores hay, en vez de fiarlo todo a la detección automática.** Cuando
+  se equivoca de número reparte mal *todas* las intervenciones y no hay forma de
+  arreglarlo salvo empezar de cero. Ahora se elige a mano junto al botón de detectar,
+  igual que en IA Voz.
+
+- **La frase que hay que decir, en pantalla.** Si la sesión tiene la letra sincronizada,
+  cada intervención enseña su texto sobre la imagen mientras la doblas. Antes había que
+  escuchar el tramo tres veces para aprenderse la frase antes de poder decirla.
+
+- **El Modo Doblaje ya es un programa entero por su cuenta.** Antes te plantaba un cartel
+  mandándote a IA Voz a pulsar un botón y volver. Ahora carga su propio vídeo, lo separa y
+  detecta quién habla sin salir de la pantalla. Y sí: separa voz e instrumental, así que el
+  doblaje conserva la música y los efectos del original — solo cambia la voz.
+
+  **Cada personaje, con la voz que tú le pongas.** Grabas todas las intervenciones con tu
+  micrófono y cada una sale con el modelo que le hayas asignado a ese personaje: una escena
+  de tres actores se dobla en solitario sin que suenen los tres igual.
+
+  **Y no se pisan.** Ajustar una toma la encajaba en la duración de *su* frase, lo cual
+  vale cuando alrededor hay silencio y falla justo en el caso difícil: si el actor 1 tiene
+  dos segundos y el actor 2 interrumpe a los 2,1, una toma un poco larga seguía sonando
+  encima del otro. Ahora se mide el sitio real que hay **hasta la siguiente entrada** y se
+  respeta; si eliges no ajustar, el programa te avisa de cuántas invaden en vez de que lo
+  descubras oyéndolo.
+
+  **Con nota.** Cada toma recibe tres puntuaciones medidas contra la interpretación
+  original: cuándo entraste, cómo repartiste la intensidad y qué forma le diste a la
+  entonación. No se puntúa el parecido de voz a propósito — no tienes la voz de ese actor y
+  esa nota no diría nada de lo que has hecho.
+
+  **El vídeo, a lo suyo.** Se recorta a 30 segundos al cargarlo: doblar es grabar frase a
+  frase, y media escena es una sesión que se termina y un proyecto que no engorda. Al
+  descargar se elige resolución, y hay una opción de limpiar la imagen para material bajado
+  de redes: quita los bloques de la compresión y afila el contorno. **No inventa detalle** —
+  un vídeo malo deja de parecer roto, no se vuelve uno bueno.
+
+- **Escuchar cada pista por separado dentro del editor.** Cada carril —voz, instrumental,
+  batería, bajo, guitarra, piano— tiene ahora su botón de reproducir. Suena esa pista
+  sola, y suena **con los silencios que le hayas marcado puestos**: lo que se oye es lo
+  que va a quedar, que es justo lo que hacía falta para saber si un corte está bien
+  puesto. Marcar o quitar un tramo mientras suena se oye al momento, sin volver a darle
+  al play.
+
+  Encima de las ondas hay una regla: un clic lleva el cursor a ese instante, y el cursor
+  cruza todos los carriles a la vez. Es lo que permite ver —y oír— que el silencio que
+  acabas de marcar en la batería cae donde entra la voz.
+
+  Suena un carril cada vez. Dos pistas a la vez ya es la mezcla, y para eso está el
+  reproductor de abajo.
+
+- **Dejar un tramo suelto sin clonar.** En la tarjeta de cada cantante, debajo del selector
+  de segmento, hay una casilla nueva: **«No clonar este tramo»**. El tramo elegido sale con
+  la voz original de la canción y **los demás segmentos de ese mismo cantante se clonan
+  igual**.
+
+  No es lo mismo que quitarle el modelo al cantante, que es lo único que se podía hacer
+  hasta ahora: eso afecta a sus ocho o diez tramos a la vez. Esto es para el caso normal de
+  que una frase suelta salga mal —un grito, un ad-lib, una palabra que el modelo no coge— y
+  se prefiera dejarla como estaba antes que pelearse con ella.
+
+  Por dentro no hay ningún camino nuevo: el tramo marcado sale del reparto, y todo lo que no
+  reclama ningún cantante ya se mezclaba con la voz original. Lo único que hubo que añadir
+  es protegerlo del relleno de huecos, que existe para lo contrario —que no quede voz sin
+  clonar por un despiste del detector— y se lo habría devuelto a un cantante vecino,
+  deshaciendo en silencio lo que se acababa de marcar.
+
+- **La ventana de arranque enseña cuánto está gastando el programa.** Junto a los avisos
+  de Backend y Frontend aparece ahora una tercera cifra: procesador, memoria y, si el
+  equipo tiene tarjeta gráfica dedicada, memoria de vídeo. Al pasar el ratón por encima se
+  desglosa en tres: el motor —con todo lo que va lanzando por su cuenta al separar o
+  clonar—, la interfaz y la propia ventana.
+
+  Es el gasto **del programa**, no el del equipo. Con el navegador y media docena de cosas
+  abiertas, el número del administrador de tareas no dice si el motor está trabajando o
+  atascado; éste sí. Sirve sobre todo para saber si merece la pena tocar el perfil de
+  velocidad o si conviene cerrar algo antes de empezar una canción larga.
+
+- **El programa se puede usar desde el móvil, la tablet o la tele.** El ordenador sigue
+  haciendo todo el trabajo —separar, clonar y mezclar—; el aparato de al lado es sólo la
+  pantalla. Desde él se carga cualquier canción, por archivo o por enlace, se elige la voz,
+  se preescucha y se descarga el resultado.
+
+  En **Ajustes** aparece la dirección a la que hay que ir, un código para escanear con la
+  cámara y un PIN de seis cifras. Se escribe una vez por aparato y no lo vuelve a pedir.
+
+  Dos cosas que conviene saber:
+
+  · **El PIN no es un adorno.** El motor siempre ha escuchado a toda la red, así que hasta
+    ahora cualquier aparato conectado a la misma wifi podía entrar y hacer de todo — subir
+    y borrar voces, ver las canciones del disco, lanzar renders. Ahora hace falta el PIN,
+    salvo desde el propio ordenador. Los aparatos conectados se ven en una lista y se
+    pueden echar de uno en uno.
+
+  · **Grabar con micrófono sigue siendo cosa del ordenador.** Los navegadores no dan acceso
+    al micrófono fuera de una conexión segura, y una dirección de red local no lo es. No es
+    un permiso que se pueda conceder: la función no está. El programa lo dice en vez de
+    ofrecer un botón que iba a fallar.
+
+  Es para tu red. Abrir el puerto del router hacia internet deja el motor entero expuesto
+  con seis cifras delante, y eso es otra cosa.
+
+- **La pantalla se adapta a un móvil.** El camino de clonar entero —cargar la canción,
+  elegir voz y tono, preescuchar, clonar, la cola y descargar— cabe y se usa con el dedo.
+  El menú de arriba se desplaza en vez de salirse, y las cabeceras se apilan en lugar de
+  pelearse por el ancho: medido en una pantalla de 375 píxeles, la página se salía 64 y
+  aparecía una barra de desplazamiento horizontal que no debería existir. El editor
+  multipista se ve y se puede tocar, y avisa de que para recortar fino conviene el
+  ordenador.
+
+- **Una cola: sueltas diez canciones y te vas.** Hay una pestaña nueva, «Cola». Se elige la
+  voz, se sueltan los archivos y el programa los va haciendo de uno en uno. No mejora ni un
+  decibelio del resultado: lo que multiplica es cuántos haces, porque hasta ahora cada
+  canción eran minutos de espera con una persona delante mirando la barra.
+
+  Tres cosas que se decidieron a propósito:
+
+  · **La cola sobrevive a cerrar el programa.** Vive en disco, no en la pantalla. Si
+    Windows reinicia por una actualización a mitad de la tercera canción, al volver a abrir
+    están las siete que quedaban y la tercera vuelve a estar pendiente — si se cortó a
+    medias, no está hecha. Una cola que se evapora al reiniciar es peor que no tenerla,
+    porque para entonces quien la dejó puesta ya se fue a dormir confiando en ella.
+
+  · **Los ajustes viajan con cada canción.** Se copian al añadirla. Encolar cinco con una
+    voz y cambiar de voz para la sexta deja las cinco primeras con la que tenían.
+
+  · **Una que falle no para las demás.** Es justo el caso para el que existe: se dejan diez
+    de noche, una viene con el audio roto, y las otras nueve tienen que estar por la mañana.
+
+- **El editor tiene un carril por instrumento.** Debajo de voz e instrumental aparecen ahora
+  la batería, el bajo, la guitarra, el piano y el resto — cada una con su onda y sus
+  silencios. Se puede callar la batería sólo en el puente y dejar sonando al resto de la
+  banda, que antes era imposible: el instrumental es la suma ya hecha y de ahí no se puede
+  quitar un instrumento.
+
+  Cuáles salen depende del modelo con el que se separó: `htdemucs` da batería, bajo y otros;
+  `htdemucs_6s` añade guitarra y piano. Las sesiones separadas con una versión anterior no
+  los tienen, y el programa lo dice en vez de aceptar un recorte que se iba a ignorar.
+  También se pueden bajar sueltas desde la pantalla de exportar.
+
+- **Acercar la línea de tiempo.** Hasta ahora cuatro minutos de canción se editaban siempre
+  en el mismo ancho de pantalla, así que la precisión de cada recorte la decidía cuántos
+  píxeles había. Ahora se acerca hasta ocho veces, con una sola barra de desplazamiento para
+  todos los carriles —dos barras separadas dejarían de mirar al mismo instante de la canción
+  en cuanto se moviera una— y los nombres de las pistas se quedan quietos a la izquierda. Al
+  acercar se pide una onda más fina, no la misma estirada.
+
+- **Copiar los recortes de un carril y pegarlos en otro.** Silenciar los mismos diez tramos
+  en la voz y en el instrumental era hacer el trabajo dos veces.
+
+- **Preescuchar por donde va sonando.** El botón de vista previa de una sola voz cogía
+  siempre los ocho segundos más fuertes de la canción, que es un estribillo casi siempre.
+  Sirve para la primera escucha y no para la segunda: si lo que se quiere comprobar es cómo
+  canta el modelo el puente, o esa frase concreta que queda rara, no había forma de pedirlo.
+  Hay un segundo botón, **DESDE DONDE SUENA**, que convierte el punto en el que esté el
+  reproductor. Debajo se dice desde qué minuto salió la última.
+
+- **Cuánta respiración del original, cantante a cantante.** La protección de respiraciones
+  presta el aire de la persona original allí donde el motor sólo sabe gruñir. Cuánto se nota
+  ese préstamo depende de lo lejos que esté el timbre del modelo del de esa persona: a tope,
+  con un modelo lejano, se oye como un pegote de otra grabación. Antes era todo o nada y
+  para toda la canción, así que en un dueto había que elegir a quién le sonaba bien. Ahora
+  hay un mando general en Ajustes y otro en la tarjeta de cada cantante, y a cero se apaga
+  sólo para esa voz.
 
 - **El proyecto cabe en un archivo.** Hasta ahora una sesión vivía en una carpeta con
   nombre de identificador, dentro de un directorio llamado «temporal». El trabajo de una
@@ -562,6 +1026,11 @@ lee esto casi siempre viene buscando si ya se arregló lo que le pasó a él.
   nota alta. El clon suena tal cual quedó, con la configuración con la que se clonó.
 
 ### Cambiado
+
+- **Editor va justo al lado de IA Voz en el menú.** Son los dos lados del mismo trabajo
+  —se analiza y se clona en uno, se recorta y se reparte en el otro— y se va y se vuelve
+  entre ellos todo el rato, mientras que Doblaje se hace una vez y no vuelve. Tenerlos
+  separados por Doblaje obligaba a saltárselo en cada ida y vuelta.
 
 - **Las letras del programa son más grandes y se leen mejor.** Casi todo el texto corría
   entre 11 y 12 píxeles, y las descripciones que explican para qué sirve cada mando eran
